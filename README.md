@@ -5,6 +5,7 @@ This repository contains the typings for the Figma Widget API.
 ## Usage
 
 1. Installation
+   
    Note that the widget api is an extention of the plugin api so you should install both `@figma/plugin-typings` and `@figma/widget-typings`
 
    ```sh
@@ -24,7 +25,7 @@ This repository contains the typings for the Figma Widget API.
    }
    ```
 
-   The configuration above is needed for the TypeScript compiler to use type definitions found in both `./node_modules/@types` and `./node_modules/@figma`. Normally, most external type definitions are from DefinitelyTyped and are installed in `/@types`, which included by TypeScript by default. Since we host the plugin typings separately, they are installed outside in `/@figma` instead.
+   The configuration above is needed for the TypeScript compiler to use type definitions found in both `./node_modules/@types` and `./node_modules/@figma`. Normally, most external type definitions are from DefinitelyTyped and are installed in `/@types`, which included by TypeScript by default. Since we host the plugin & widget typings separately, they are installed outside in `/@figma` instead.
 
    Types should become globally available without needing to use import statements. We do it this way because the widget API is part of the host environment, as opposed to being a package that a plugin includes.
 
