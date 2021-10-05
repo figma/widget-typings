@@ -77,13 +77,7 @@ declare global {
   type WidgetPropertyEvent = { propertyName: string };
 
   interface TextProps extends BaseProps, WidgetJSX.TextProps {
-    // The font property maps more closely to how we list
-    // the font and style in the properties panel. We might
-    // want to deprecate this for release
     font?: { family: string; style: string };
-
-    // The figma-react api doesn't specify children because that
-    // depends on if we are rendering in React or not
     children?: string | string[];
   }
 
