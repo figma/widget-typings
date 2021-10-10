@@ -15,11 +15,11 @@ declare global {
 
     // Hooks
     useWidgetId(): string;
-    useSyncedState<T>(
+    useSyncedState<T = any>(
       name: string,
       defaultValue: T
     ): [T, (newValue: T) => void];
-    useSyncedMap<T>(name: string): SyncedMap<T>;
+    useSyncedMap<T = any>(name: string): SyncedMap<T>;
     usePropertyMenu(
       items: WidgetPropertyMenuItem[],
       onChange: (event: WidgetPropertyEvent) => void | Promise<void>
@@ -39,7 +39,7 @@ declare global {
     SVG: SVG;
   }
 
-  type SyncedMap<T> = {
+  type SyncedMap<T = any> = {
     readonly length: number;
 
     get(key: string): T | undefined;
@@ -63,7 +63,7 @@ declare global {
 
   type SVG = FunctionalWidget<SVGProps>;
 
-  type FigmaDeclarativeNode = Object | any[] | string | null;
+  type FigmaDeclarativeNode = Object | any[] | string | null | undefined | false;
   type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode;
 
   type WidgetPropertyMenuItem = {
@@ -392,7 +392,7 @@ declare global {
 
     export interface TextStyleProps {
       fontFamily?: string;
-      letterSpacing?: number;
+      letterSpacing?: number | string;
       textDecoration?: "none" | "strikethrough" | "underline";
       fontSize?: number;
       italic?: boolean;
