@@ -40,8 +40,10 @@ declare global {
   }
 
   type SyncedMap<T = any> = {
+    /** @deprecated use size instead */
     readonly length: number;
-
+    
+    readonly size: number;
     get(key: string): T | undefined;
     set(key: string, value: T): void;
     delete(key: string): void;
@@ -193,7 +195,7 @@ declare global {
       imageTransform?: Transform;
       scalingFactor?: number;
       rotation?: number;
-      imageRef: string;
+      imageRef?: string;
     }
 
     export type Paint = SolidPaint | GradientPaint | ImagePaint;
@@ -434,8 +436,7 @@ declare global {
         SizeProps {}
 
     export interface ImageProps
-      extends Omit<RectangleProps, "fill" | "width" | "height">,
-        SizeProps {
+      extends Omit<RectangleProps, "fill"> {
       src: string | ImagePaint;
     }
 
