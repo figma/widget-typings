@@ -190,12 +190,12 @@ declare global {
     export interface ImagePaint extends PaintProps {
       type: "image";
       src: string;
-      imageSize: { width: number; height: number };
+      imageSize?: { width: number; height: number };
       scaleMode?: ScaleMode;
       imageTransform?: Transform;
       scalingFactor?: number;
       rotation?: number;
-      imageRef: string;
+      imageRef?: string;
     }
 
     export type Paint = SolidPaint | GradientPaint | ImagePaint;
