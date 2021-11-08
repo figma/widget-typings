@@ -343,8 +343,8 @@ declare global {
     }
 
     export interface GeometryProps {
-      fill?: HexCode | Color | Paint | Paint[];
-      stroke?: HexCode | Color | SolidPaint | SolidPaint[];
+      fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[];
+      stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[];
       strokeWidth?: number;
       strokeAlign?: StrokeAlign;
     }
@@ -408,7 +408,7 @@ declare global {
       fontWeight?: FontWeight;
       fontPostScriptName?: string;
       href?: string;
-      fill?: HexCode | Color | SolidPaint | SolidPaint[];
+      fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[];
     }
 
     ///
