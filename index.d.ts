@@ -471,6 +471,7 @@ declare global {
       extends BaseProps,
         AutoLayoutSizeProps,
         TransformProps,
+        Omit<GeometryProps, 'fill'>,
         TextStyleProps {
       paragraphIndent?: number;
       paragraphSpacing?: number;
