@@ -17,8 +17,8 @@ declare global {
     useWidgetId(): string;
     useSyncedState<T = any>(
       name: string,
-      defaultValue: T
-    ): [T, (newValue: T) => void];
+      defaultValue: T | (() => T)
+    ): [T, (newValue: T | ((currValue: T) => T)) => void];
     useSyncedMap<T = any>(name: string): SyncedMap<T>;
     usePropertyMenu(
       items: WidgetPropertyMenuItem[],
