@@ -78,6 +78,19 @@ declare global {
   type WidgetPropertyMenu = WidgetPropertyMenuItem[];
   type WidgetPropertyEvent = { propertyName: string };
 
+
+  type WidgetClickEvent = {
+    // canvasX and canvasY are the coordinates of the click relative to the canvas
+    // this is the same as the absolute position that is used to position a node
+    canvasX: number;
+    canvasY: number;
+
+    // offsetX and offsetY are the coordinates of the click relative to the component
+    // that was clicked
+    offsetX: number;
+    offsetY: number;
+  }
+
   interface TextProps extends BaseProps, WidgetJSX.TextProps {
     font?: { family: string; style: string };
     children?: string | string[];
@@ -105,7 +118,7 @@ declare global {
 
   interface BaseProps extends WidgetJSX.BaseProps {
     // We have a custom onClick api that returns a promise
-    onClick?: () => Promise<any> | void;
+    onClick?: (event: WidgetClickEvent) => Promise<any> | void;
     key?: string | number;
   }
 
