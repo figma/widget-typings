@@ -31,10 +31,30 @@ cat > code.tsx << EOF
  * Test file to make sure that widget-typings work as expected.
  */
 const { widget } = figma
-const { AutoLayout } = widget
+const { AutoLayout, Text, useSyncedState, useEffect } = widget
 
 function Widget() {
-  return <AutoLayout />
+  const [foo, setFoo] = useSyncedState("foo", () => 0)
+  const [bar, setBar] = useSyncedState("bar", 0)
+  useEffect(() => {
+    console.log(foo)
+    console.log(bar)
+  })  
+
+  return (
+    <AutoLayout>
+      <Text
+        onClick={() => {
+          setFoo(foo + 1)
+          setBar(bar => bar + 1)
+        }}
+      >
+        {foo}
+        {" "}
+        {bar}
+      </Text>
+    </AutoLayout>
+  )
 }
 
 widget.register(Widget)
