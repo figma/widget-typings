@@ -97,10 +97,17 @@ declare global {
     itemType: 'color-selector'
   }
   
-  interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
+  interface WidgetPropertyMenuDropdownOption {
+    option: string
+    label: string
+  }
+  
+  interface WidgetPropertyMenuDropdownItem {
     itemType: 'dropdown'
-    options: string[]
-    selectedOption: string 
+    tooltip: string
+    propertyName: string
+    options: WidgetPropertyMenuDropdownOption[]
+    selectedOption: string
   }
   
   type WidgetPropertyMenuItem =
