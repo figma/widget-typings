@@ -69,6 +69,8 @@ declare global {
   type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode;
 
   type PropertyMenuItemType = 'action' | 'separator' | 'color-selector' | 'dropdown'
+
+  type HexCode = string;
   interface PropertyMenuItem {
     tooltip: string
     propertyName: string
@@ -84,13 +86,13 @@ declare global {
     itemType: 'separator'
   }
   
-  interface WidgetPropertyMenuSelectorOption {
+  interface WidgetPropertyMenuColorSelectorOption {
     tooltip: string
-    option: string
+    option: HexCode
   }
   
   interface WidgetPropertyMenuSelectorItem extends PropertyMenuItem {
-    options: WidgetPropertyMenuSelectorOption[]
+    options: WidgetPropertyMenuColorSelectorOption[]
     selectedOption: string
   }
   interface WidgetPropertyMenuColorItem extends WidgetPropertyMenuSelectorItem {
@@ -166,9 +168,7 @@ declare global {
   interface HasChildrenProps {
     children?: FigmaDeclarativeNode | FigmaDeclarativeNode[];
   }
-
   namespace WidgetJSX {
-    export type HexCode = string;
 
     export interface Vector {
       x: number;
