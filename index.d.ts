@@ -110,7 +110,7 @@ declare global {
     | WidgetPropertyMenuDropdownItem
 
   type WidgetPropertyMenu = WidgetPropertyMenuItem[];
-  type WidgetPropertyEvent = { propertyName: string, propertyValue?: any };
+  type WidgetPropertyEvent = { propertyName: string, propertyValue?: string | undefined };
 
 
   type WidgetClickEvent = {
