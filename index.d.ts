@@ -11,7 +11,7 @@ declare global {
 
   interface WidgetAPI {
     register(component: FunctionalWidget<any>): void;
-    h(...args: any[]): void;
+    h(...args: any[]): FigmaDeclarativeNode;
 
     // Hooks
     useWidgetId(): string;
