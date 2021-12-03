@@ -90,13 +90,11 @@ declare global {
     tooltip: string
     option: HexCode
   }
-  
-  interface WidgetPropertyMenuSelectorItem extends PropertyMenuItem {
+
+  interface WidgetPropertyMenuColorItem extends PropertyMenuItem {
+    itemType: 'color-selector'
     options: WidgetPropertyMenuColorSelectorOption[]
     selectedOption: string
-  }
-  interface WidgetPropertyMenuColorItem extends WidgetPropertyMenuSelectorItem {
-    itemType: 'color-selector'
   }
   
   interface WidgetPropertyMenuDropdownOption {
@@ -104,10 +102,8 @@ declare global {
     label: string
   }
   
-  interface WidgetPropertyMenuDropdownItem {
+  interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
     itemType: 'dropdown'
-    tooltip: string
-    propertyName: string
     options: WidgetPropertyMenuDropdownOption[]
     selectedOption: string
   }
