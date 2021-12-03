@@ -31,7 +31,7 @@ cat > code.tsx << EOF
  * Test file to make sure that widget-typings work as expected.
  */
 const { widget } = figma
-const { AutoLayout, Text, useSyncedState, useEffect } = widget
+const { AutoLayout, Text, useSyncedState, useEffect, usePropertyMenu } = widget
 
 function Widget() {
   const [foo, setFoo] = useSyncedState("foo", () => 0)
@@ -40,6 +40,34 @@ function Widget() {
     console.log(foo)
     console.log(bar)
   })  
+
+  usePropertyMenu(
+    [
+      {
+        itemType: 'action',
+        tooltip: 'Action',
+        propertyName: 'action',
+      },
+      {
+        itemType: 'separator',
+      },
+      {
+        itemType: 'color-selector',
+        propertyName: 'color-selector',
+        tooltip: 'Color selector',
+        selectedOption: '#000',
+        options: [{option: '#000', tooltip: "Black"}],
+      },
+      {
+        itemType: 'dropdown',
+        propertyName: 'dropdown',
+        tooltip: 'Dropdown',
+        selectedOption: 'option1',
+        options: [{option: 'option1', label: 'Option 1'}],
+      },
+    ],
+    ({propertyName, propertyValue}) => {}
+  )
 
   return (
     <AutoLayout>

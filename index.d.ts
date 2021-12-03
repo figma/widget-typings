@@ -68,15 +68,54 @@ declare global {
   type FigmaDeclarativeNode = Object | any[] | string | null | undefined | false;
   type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode;
 
-  type WidgetPropertyMenuItem = {
-    tooltip: string;
-    propertyName: string;
-    itemType: "action";
-    icon?: string;
-  };
+  type PropertyMenuItemType = 'action' | 'separator' | 'color-selector' | 'dropdown'
+
+  type HexCode = string;
+  interface PropertyMenuItem {
+    tooltip: string
+    propertyName: string
+    itemType: PropertyMenuItemType
+  }
+  
+  interface WidgetPropertyMenuActionItem extends PropertyMenuItem {
+    itemType: 'action'
+    icon?: string
+  }
+  
+  interface WidgetPropertyMenuSeparatorItem {
+    itemType: 'separator'
+  }
+  
+  interface WidgetPropertyMenuColorSelectorOption {
+    tooltip: string
+    option: HexCode
+  }
+
+  interface WidgetPropertyMenuColorItem extends PropertyMenuItem {
+    itemType: 'color-selector'
+    options: WidgetPropertyMenuColorSelectorOption[]
+    selectedOption: string
+  }
+  
+  interface WidgetPropertyMenuDropdownOption {
+    option: string
+    label: string
+  }
+  
+  interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
+    itemType: 'dropdown'
+    options: WidgetPropertyMenuDropdownOption[]
+    selectedOption: string
+  }
+  
+  type WidgetPropertyMenuItem =
+    | WidgetPropertyMenuActionItem
+    | WidgetPropertyMenuSeparatorItem
+    | WidgetPropertyMenuColorItem
+    | WidgetPropertyMenuDropdownItem
 
   type WidgetPropertyMenu = WidgetPropertyMenuItem[];
-  type WidgetPropertyEvent = { propertyName: string };
+  type WidgetPropertyEvent = { propertyName: string, propertyValue?: string | undefined };
 
 
   type WidgetClickEvent = {
@@ -125,9 +164,7 @@ declare global {
   interface HasChildrenProps {
     children?: FigmaDeclarativeNode | FigmaDeclarativeNode[];
   }
-
   namespace WidgetJSX {
-    export type HexCode = string;
 
     export interface Vector {
       x: number;
