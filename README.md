@@ -1,5 +1,7 @@
 # Figma Widget API typings
 
+[![npm](https://img.shields.io/npm/v/@figma/widget-typings?logo=npm&cacheSeconds=1800)](https://www.npmjs.com/package/@figma/widget-typings)
+
 This repository contains the typings for the Figma Widget API.
 
 ## Usage
