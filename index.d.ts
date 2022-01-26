@@ -44,6 +44,7 @@ declare global {
     readonly length: number;
     
     readonly size: number;
+    has(key: string): boolean;
     get(key: string): T | undefined;
     set(key: string, value: T): void;
     delete(key: string): void;

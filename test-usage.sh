@@ -31,15 +31,20 @@ cat > code.tsx << EOF
  * Test file to make sure that widget-typings work as expected.
  */
 const { widget } = figma
-const { AutoLayout, Text, useSyncedState, useEffect, usePropertyMenu } = widget
+const { AutoLayout, Text, useSyncedState, useSyncedMap, useEffect, usePropertyMenu } = widget
 
 function Widget() {
   const [foo, setFoo] = useSyncedState("foo", () => 0)
   const [bar, setBar] = useSyncedState("bar", 0)
+  const bazMap = useSyncedMap("baz")
+
   useEffect(() => {
     console.log(foo)
     console.log(bar)
-  })  
+    if (bazMap.has("hello")) {
+      console.log(bazMap.get("hello"))
+    }
+  })
 
   usePropertyMenu(
     [
