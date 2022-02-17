@@ -160,6 +160,7 @@ declare global {
     // We have a custom onClick api that returns a promise
     onClick?: (event: WidgetClickEvent) => Promise<any> | void;
     key?: string | number;
+    tooltip?: string;
   }
 
   interface HasChildrenProps {
