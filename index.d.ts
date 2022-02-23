@@ -154,11 +154,14 @@ declare global {
 	interface TextEditEvent {
 		characters: string;
 	}
+	interface PlaceholderProps
+		extends WidgetJSX.BlendProps,
+			Omit<WidgetJSX.TextStyleProps, "href"> {}
 	interface InputProps extends Omit<TextProps, "children" | "width"> {
 		placeholder?: string;
 		onTextEditEnd: (e: TextEditEvent) => void;
 		value: string | null;
-		placeholderProps?: Omit<WidgetJSX.TextStyleProps, "href">;
+		placeholderProps?: PlaceholderProps;
 		inputFrameProps?: Omit<AutoLayoutProps, "width">;
 		width?: WidgetJSX.Size;
 		inputBehavior?: "wrap" | "truncate" | "multiline";
