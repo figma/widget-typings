@@ -27,6 +27,8 @@ declare global {
 
     useEffect(effect: () => (() => void) | void): void;
 
+    useStickable(config?: { isStickable?: boolean }): void;
+
     waitForTask(promise: Promise<any>): void;
 
     // Components
