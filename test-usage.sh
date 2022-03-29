@@ -18,6 +18,7 @@ cat > tsconfig.json << EOF
     "strict": true,
     "jsx": "react",
     "jsxFactory": "figma.widget.h",
+    "jsxFragmentFactory": "figma.widget.Fragment",
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma"
@@ -31,7 +32,17 @@ cat > code.tsx << EOF
  * Test file to make sure that widget-typings work as expected.
  */
 const { widget } = figma
-const { AutoLayout, Text, useSyncedState, useSyncedMap, useEffect, usePropertyMenu } = widget
+const {
+  AutoLayout,
+  Text,
+  Frame,
+  Ellipse,
+  Line,
+  useSyncedState,
+  useSyncedMap,
+  useEffect,
+  usePropertyMenu
+} = widget
 
 function Widget() {
   const [foo, setFoo] = useSyncedState("foo", () => 0)
@@ -86,6 +97,18 @@ function Widget() {
         {" "}
         {bar}
       </Text>
+      <Frame width={100} height={200}>
+        <Text
+          x={{ type: 'left', offset: 5 }}
+          y={{ type: 'bottom', offset: 5 }}
+        >
+          Offsets
+        </Text>
+        <>
+          <Line />
+          <Ellipse arcData={{ startingAngle: 1, endingAngle: 1, innerRadius: 1}} />
+        </>
+      </Frame>
     </AutoLayout>
   )
 }

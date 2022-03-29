@@ -40,6 +40,8 @@ declare global {
     Text: TextComponent;
     SVG: SVG;
     Input: InputComponent;
+    Line: Line;
+    Fragment: Fragment;
   }
 
   type SyncedMap<T = any> = {
@@ -56,6 +58,8 @@ declare global {
     entries(): [string, T][];
   };
 
+  type Fragment = FunctionalWidget<{ key?: any }>;
+
   type AutoLayout = FunctionalWidget<AutoLayoutProps>;
   type Frame = FunctionalWidget<FrameProps>;
 
@@ -64,6 +68,7 @@ declare global {
   type ImageComponent = FunctionalWidget<ImageProps>;
 
   type Ellipse = FunctionalWidget<EllipseProps>;
+  type Line = FunctionalWidget<LineProps>;
 
   type TextComponent = FunctionalWidget<TextProps>;
 
@@ -184,6 +189,12 @@ declare global {
   interface RectangleProps extends BaseProps, WidgetJSX.RectangleProps {}
 
   interface ImageProps extends BaseProps, WidgetJSX.ImageProps {}
+
+  interface LineProps
+    extends BaseProps,
+      Omit<WidgetJSX.LineProps, "direction" | "length"> {
+    length?: WidgetJSX.LineProps["length"];
+  }
 
   interface SVGProps extends BaseProps, Partial<WidgetJSX.FrameProps> {
     src: string;
@@ -418,6 +429,12 @@ declare global {
       | "black";
     export type FontWeight = FontWeightNumerical | FontWeightString;
 
+    export type ArcData = {
+      readonly startingAngle: number;
+      readonly endingAngle: number;
+      readonly innerRadius: number;
+    };
+
     interface HoverStyle {
       fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[];
       stroke?:
@@ -481,8 +498,8 @@ declare global {
     }
 
     export interface ConstraintProps {
-      x?: number; // | HorizontalConstraint
-      y?: number; // | VerticalConstraint
+      x?: number | HorizontalConstraint;
+      y?: number | VerticalConstraint;
     }
 
     export interface LayoutProps {
@@ -534,7 +551,9 @@ declare global {
       extends BaseProps,
         GeometryProps,
         TransformProps,
-        SizeProps {}
+        SizeProps {
+      arcData?: ArcData;
+    }
 
     export interface ImageProps extends Omit<RectangleProps, "fill"> {
       src: string | ImagePaint;
