@@ -33,6 +33,10 @@ cat > code.tsx << EOF
 const { widget } = figma
 const { AutoLayout, Text, useSyncedState, useSyncedMap, useEffect, usePropertyMenu } = widget
 
+function CustomComponent({ label }: { label: string }) {
+  return <Text>{label}</Text>
+}
+
 function Widget() {
   const [foo, setFoo] = useSyncedState("foo", () => 0)
   const [bar, setBar] = useSyncedState("bar", 0)
@@ -86,6 +90,7 @@ function Widget() {
         {" "}
         {bar}
       </Text>
+      <CustomComponent key={1} label="Hello" />
     </AutoLayout>
   )
 }
