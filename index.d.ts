@@ -3,7 +3,7 @@
 declare global {
   // Extend the global widget api
   interface PluginAPI {
-    widget: WidgetAPI;
+    widget: WidgetAPI
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -14,7 +14,7 @@ declare global {
      * inside your component or have to validate them.
      */
     interface IntrinsicAttributes {
-        key?: string | number | null | undefined;
+      key?: string | number | null | undefined
     }
   }
 
@@ -22,83 +22,83 @@ declare global {
   // Widget
 
   interface WidgetAPI {
-    register(component: FunctionalWidget<any>): void;
-    h(...args: any[]): FigmaDeclarativeNode;
+    register(component: FunctionalWidget<any>): void
+    h(...args: any[]): FigmaDeclarativeNode
 
     // Hooks
-    useWidgetId(): string;
+    useWidgetId(): string
     useSyncedState<T = any>(
       name: string,
-      defaultValue: T | (() => T)
-    ): [T, (newValue: T | ((currValue: T) => T)) => void];
-    useSyncedMap<T = any>(name: string): SyncedMap<T>;
+      defaultValue: T | (() => T),
+    ): [T, (newValue: T | ((currValue: T) => T)) => void]
+    useSyncedMap<T = any>(name: string): SyncedMap<T>
     usePropertyMenu(
       items: WidgetPropertyMenuItem[],
-      onChange: (event: WidgetPropertyEvent) => void | Promise<void>
-    ): void;
+      onChange: (event: WidgetPropertyEvent) => void | Promise<void>,
+    ): void
 
-    useEffect(effect: () => (() => void) | void): void;
+    useEffect(effect: () => (() => void) | void): void
 
-    waitForTask(promise: Promise<any>): void;
+    waitForTask(promise: Promise<any>): void
 
     // Components
-    AutoLayout: AutoLayout;
-    Frame: Frame;
-    Image: ImageComponent;
-    Rectangle: Rectangle;
-    Ellipse: Ellipse;
-    Text: TextComponent;
-    SVG: SVG;
+    AutoLayout: AutoLayout
+    Frame: Frame
+    Image: ImageComponent
+    Rectangle: Rectangle
+    Ellipse: Ellipse
+    Text: TextComponent
+    SVG: SVG
   }
 
   type SyncedMap<T = any> = {
     /** @deprecated use size instead */
-    readonly length: number;
-    
-    readonly size: number;
-    has(key: string): boolean;
-    get(key: string): T | undefined;
-    set(key: string, value: T): void;
-    delete(key: string): void;
-    keys(): string[];
-    values(): T[];
-    entries(): [string, T][];
-  };
+    readonly length: number
 
-  type AutoLayout = FunctionalWidget<AutoLayoutProps>;
-  type Frame = FunctionalWidget<FrameProps>;
+    readonly size: number
+    has(key: string): boolean
+    get(key: string): T | undefined
+    set(key: string, value: T): void
+    delete(key: string): void
+    keys(): string[]
+    values(): T[]
+    entries(): [string, T][]
+  }
 
-  type Rectangle = FunctionalWidget<RectangleProps>;
+  type AutoLayout = FunctionalWidget<AutoLayoutProps>
+  type Frame = FunctionalWidget<FrameProps>
 
-  type ImageComponent = FunctionalWidget<ImageProps>;
+  type Rectangle = FunctionalWidget<RectangleProps>
 
-  type Ellipse = FunctionalWidget<EllipseProps>;
+  type ImageComponent = FunctionalWidget<ImageProps>
 
-  type TextComponent = FunctionalWidget<TextProps>;
+  type Ellipse = FunctionalWidget<EllipseProps>
 
-  type SVG = FunctionalWidget<SVGProps>;
+  type TextComponent = FunctionalWidget<TextProps>
 
-  type FigmaDeclarativeNode = Object | any[] | string | null | undefined | false;
-  type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode;
+  type SVG = FunctionalWidget<SVGProps>
+
+  type FigmaDeclarativeNode = Object | any[] | string | null | undefined | false
+  type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
 
   type PropertyMenuItemType = 'action' | 'separator' | 'color-selector' | 'dropdown'
 
-  type HexCode = string;
+  type HexCode = string
   interface PropertyMenuItem {
     tooltip: string
     propertyName: string
     itemType: PropertyMenuItemType
   }
-  
+
   interface WidgetPropertyMenuActionItem extends PropertyMenuItem {
     itemType: 'action'
     icon?: string
   }
-  
+
   interface WidgetPropertyMenuSeparatorItem {
     itemType: 'separator'
   }
-  
+
   interface WidgetPropertyMenuColorSelectorOption {
     tooltip: string
     option: HexCode
@@ -109,54 +109,47 @@ declare global {
     options: WidgetPropertyMenuColorSelectorOption[]
     selectedOption: string
   }
-  
+
   interface WidgetPropertyMenuDropdownOption {
     option: string
     label: string
   }
-  
+
   interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
     itemType: 'dropdown'
     options: WidgetPropertyMenuDropdownOption[]
     selectedOption: string
   }
-  
+
   type WidgetPropertyMenuItem =
     | WidgetPropertyMenuActionItem
     | WidgetPropertyMenuSeparatorItem
     | WidgetPropertyMenuColorItem
     | WidgetPropertyMenuDropdownItem
 
-  type WidgetPropertyMenu = WidgetPropertyMenuItem[];
-  type WidgetPropertyEvent = { propertyName: string, propertyValue?: string | undefined };
-
+  type WidgetPropertyMenu = WidgetPropertyMenuItem[]
+  type WidgetPropertyEvent = { propertyName: string; propertyValue?: string | undefined }
 
   type WidgetClickEvent = {
     // canvasX and canvasY are the coordinates of the click relative to the canvas
     // this is the same as the absolute position that is used to position a node
-    canvasX: number;
-    canvasY: number;
+    canvasX: number
+    canvasY: number
 
     // offsetX and offsetY are the coordinates of the click relative to the component
     // that was clicked
-    offsetX: number;
-    offsetY: number;
+    offsetX: number
+    offsetY: number
   }
 
   interface TextProps extends BaseProps, WidgetJSX.TextProps {
-    font?: { family: string; style: string };
-    children?: string | string[];
+    font?: { family: string; style: string }
+    children?: string | string[]
   }
 
-  interface FrameProps
-    extends BaseProps,
-      WidgetJSX.FrameProps,
-      HasChildrenProps {}
+  interface FrameProps extends BaseProps, WidgetJSX.FrameProps, HasChildrenProps {}
 
-  interface AutoLayoutProps
-    extends BaseProps,
-      WidgetJSX.AutoLayoutProps,
-      HasChildrenProps {}
+  interface AutoLayoutProps extends BaseProps, WidgetJSX.AutoLayoutProps, HasChildrenProps {}
 
   interface EllipseProps extends BaseProps, WidgetJSX.EllipseProps {}
 
@@ -165,175 +158,167 @@ declare global {
   interface ImageProps extends BaseProps, WidgetJSX.ImageProps {}
 
   interface SVGProps extends BaseProps, Partial<WidgetJSX.FrameProps> {
-    src: string;
+    src: string
   }
 
   interface BaseProps extends WidgetJSX.BaseProps {
     // We have a custom onClick api that returns a promise
-    onClick?: (event: WidgetClickEvent) => Promise<any> | void;
-    key?: string | number;
+    onClick?: (event: WidgetClickEvent) => Promise<any> | void
+    key?: string | number
   }
 
   interface HasChildrenProps {
-    children?: FigmaDeclarativeNode | FigmaDeclarativeNode[];
+    children?: FigmaDeclarativeNode | FigmaDeclarativeNode[]
   }
   namespace WidgetJSX {
-
     export interface Vector {
-      x: number;
-      y: number;
+      x: number
+      y: number
     }
 
     export interface Color {
-      r: number;
-      g: number;
-      b: number;
-      a: number;
+      r: number
+      g: number
+      b: number
+      a: number
     }
 
-    export type AlignItems = "center" | "start" | "end";
+    export type AlignItems = 'center' | 'start' | 'end'
     export type BlendMode =
-      | "normal"
-      | "multiply"
-      | "screen"
-      | "overlay"
-      | "darken"
-      | "lighten"
-      | "color-dodge"
-      | "color-burn"
-      | "hard-light"
-      | "soft-light"
-      | "difference"
-      | "exclusion"
-      | "hue"
-      | "saturation"
-      | "color"
-      | "luminosity";
+      | 'normal'
+      | 'multiply'
+      | 'screen'
+      | 'overlay'
+      | 'darken'
+      | 'lighten'
+      | 'color-dodge'
+      | 'color-burn'
+      | 'hard-light'
+      | 'soft-light'
+      | 'difference'
+      | 'exclusion'
+      | 'hue'
+      | 'saturation'
+      | 'color'
+      | 'luminosity'
 
     export type PaintType =
-      | "image"
-      | "solid"
-      | "gradient-linear"
-      | "gradient-radial"
-      | "gradient-angular"
-      | "gradient-diamond";
+      | 'image'
+      | 'solid'
+      | 'gradient-linear'
+      | 'gradient-radial'
+      | 'gradient-angular'
+      | 'gradient-diamond'
 
     export interface PaintProps {
-      type: PaintType;
-      blendMode?: BlendMode;
-      visible?: boolean;
-      opacity?: number;
+      type: PaintType
+      blendMode?: BlendMode
+      visible?: boolean
+      opacity?: number
     }
 
     export interface SolidPaint extends PaintProps {
-      type: "solid";
-      color: Color | HexCode;
+      type: 'solid'
+      color: Color | HexCode
     }
 
     export interface ColorStop {
-      position: number;
-      color: Color;
+      position: number
+      color: Color
     }
 
     export interface GradientPaint extends PaintProps {
-      type:
-        | "gradient-linear"
-        | "gradient-radial"
-        | "gradient-angular"
-        | "gradient-diamond";
-      gradientHandlePositions: [Vector, Vector, Vector];
-      gradientStops: ColorStop[];
+      type: 'gradient-linear' | 'gradient-radial' | 'gradient-angular' | 'gradient-diamond'
+      gradientHandlePositions: [Vector, Vector, Vector]
+      gradientStops: ColorStop[]
     }
 
-    export type Transform = [
-      [number, number, number],
-      [number, number, number]
-    ];
+    export type Transform = [[number, number, number], [number, number, number]]
 
     export interface ImagePaint extends PaintProps {
-      type: "image";
-      src: string;
-      imageSize?: { width: number; height: number };
-      scaleMode?: ScaleMode;
-      imageTransform?: Transform;
-      scalingFactor?: number;
-      rotation?: number;
-      imageRef?: string;
+      type: 'image'
+      src: string
+      imageSize?: { width: number; height: number }
+      scaleMode?: ScaleMode
+      imageTransform?: Transform
+      scalingFactor?: number
+      rotation?: number
+      imageRef?: string
     }
 
-    export type Paint = SolidPaint | GradientPaint | ImagePaint;
+    export type Paint = SolidPaint | GradientPaint | ImagePaint
 
     export interface ShadowEffect {
-      type: "inner-shadow" | "drop-shadow";
-      color: HexCode | Color;
-      offset: Vector;
-      blur: number;
-      blendMode?: BlendMode;
-      spread?: number;
-      visible?: boolean;
+      type: 'inner-shadow' | 'drop-shadow'
+      color: HexCode | Color
+      offset: Vector
+      blur: number
+      blendMode?: BlendMode
+      spread?: number
+      visible?: boolean
     }
 
     export interface BlurEffect {
-      type: "layer-blur" | "background-blur";
-      blur: number;
-      visible?: boolean;
+      type: 'layer-blur' | 'background-blur'
+      blur: number
+      visible?: boolean
     }
 
-    export type Effect = ShadowEffect | BlurEffect;
+    export type Effect = ShadowEffect | BlurEffect
 
-    export type Size = number | "fill-parent";
-    export type AutolayoutSize = Size | "hug-contents";
-    export type StrokeAlign = "inside" | "outside" | "center";
-    export type ScaleMode = "fill" | "fit" | "tile" | "crop";
-    export type Overflow = "visible" | "hidden" | "scroll";
+    export type Size = number | 'fill-parent'
+    export type AutolayoutSize = Size | 'hug-contents'
+    export type StrokeAlign = 'inside' | 'outside' | 'center'
+    export type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
+    export type Overflow = 'visible' | 'hidden' | 'scroll'
 
     export interface TopConstraint {
-      type: "top";
-      offset: number;
+      type: 'top'
+      offset: number
     }
 
     export interface BottomConstraint {
-      type: "bottom";
-      offset: number;
+      type: 'bottom'
+      offset: number
     }
 
     export interface TopBottomConstraint {
-      type: "top-bottom";
-      topOffset: number;
-      bottomOffset: number;
+      type: 'top-bottom'
+      topOffset: number
+      bottomOffset: number
     }
 
     export interface LeftConstraint {
-      type: "left";
-      offset: number;
+      type: 'left'
+      offset: number
     }
 
     export interface RightConstraint {
-      type: "right";
-      offset: number;
+      type: 'right'
+      offset: number
     }
 
     export interface LeftRightConstraint {
-      type: "left-right";
-      leftOffset: number;
-      rightOffset: number;
+      type: 'left-right'
+      leftOffset: number
+      rightOffset: number
     }
 
     export interface CenterConstraint {
-      type: "center";
-      offset: number;
+      type: 'center'
+      offset: number
     }
 
     export interface HorizontalScaleConstraint {
-      type: "horizontal-scale";
-      leftOffsetPercent: number;
-      rightOffsetPercent: number;
+      type: 'horizontal-scale'
+      leftOffsetPercent: number
+      rightOffsetPercent: number
     }
 
     export interface VerticalScaleConstraint {
-      type: "vertical-scale";
-      topOffsetPercent: number;
-      bottomOffsetPercent: number;
+      type: 'vertical-scale'
+      topOffsetPercent: number
+      bottomOffsetPercent: number
     }
 
     type VerticalConstraint =
@@ -341,137 +326,122 @@ declare global {
       | BottomConstraint
       | TopBottomConstraint
       | CenterConstraint
-      | VerticalScaleConstraint;
+      | VerticalScaleConstraint
     type HorizontalConstraint =
       | LeftConstraint
       | RightConstraint
       | LeftRightConstraint
       | CenterConstraint
-      | HorizontalScaleConstraint;
+      | HorizontalScaleConstraint
 
     export type CornerRadius =
       | number
       | {
-          topLeft?: number;
-          topRight?: number;
-          bottomLeft?: number;
-          bottomRight?: number;
-        };
+          topLeft?: number
+          topRight?: number
+          bottomLeft?: number
+          bottomRight?: number
+        }
 
     export type Path = {
-      path: string;
-      windingRule: "evenodd" | "nonzero";
-    };
+      path: string
+      windingRule: 'evenodd' | 'nonzero'
+    }
 
     export type FullPadding = {
-      top?: number;
-      left?: number;
-      bottom?: number;
-      right?: number;
-    };
+      top?: number
+      left?: number
+      bottom?: number
+      right?: number
+    }
     export type VerticalHorizontalPadding = {
-      vertical?: number;
-      horizontal?: number;
-    };
-    export type Padding = number | FullPadding | VerticalHorizontalPadding;
+      vertical?: number
+      horizontal?: number
+    }
+    export type Padding = number | FullPadding | VerticalHorizontalPadding
 
-    export type FontWeightNumerical =
-      | 100
-      | 200
-      | 300
-      | 400
-      | 500
-      | 600
-      | 700
-      | 800
-      | 900;
+    export type FontWeightNumerical = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
     export type FontWeightString =
-      | "thin"
-      | "extra-light"
-      | "light"
-      | "normal"
-      | "medium"
-      | "semi-bold"
-      | "bold"
-      | "extra-bold"
-      | "black";
-    export type FontWeight = FontWeightNumerical | FontWeightString;
+      | 'thin'
+      | 'extra-light'
+      | 'light'
+      | 'normal'
+      | 'medium'
+      | 'semi-bold'
+      | 'bold'
+      | 'extra-bold'
+      | 'black'
+    export type FontWeight = FontWeightNumerical | FontWeightString
 
     ///
     /// MIXINS
     ///
     export interface BaseProps extends BlendProps, ConstraintProps {
-      name?: string;
-      hidden?: boolean;
+      name?: string
+      hidden?: boolean
     }
 
     export interface GeometryProps {
-      fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[];
-      stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[];
-      strokeWidth?: number;
-      strokeAlign?: StrokeAlign;
+      fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
+      stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
+      strokeWidth?: number
+      strokeAlign?: StrokeAlign
     }
 
     export interface PathProps {
-      fillPath?: Path[];
-      strokePath?: Path[];
+      fillPath?: Path[]
+      strokePath?: Path[]
     }
 
     export interface SizeProps {
-      width?: Size;
-      height?: Size;
+      width?: Size
+      height?: Size
     }
 
     export interface AutoLayoutSizeProps {
-      width?: AutolayoutSize;
-      height?: AutolayoutSize;
+      width?: AutolayoutSize
+      height?: AutolayoutSize
     }
 
     export interface CornerProps {
-      cornerRadius?: CornerRadius;
+      cornerRadius?: CornerRadius
     }
 
     export interface BlendProps {
-      blendMode?: BlendMode;
-      opacity?: number;
-      effect?: Effect | Effect[];
+      blendMode?: BlendMode
+      opacity?: number
+      effect?: Effect | Effect[]
     }
 
     export interface TransformProps {
-      rotation?: number;
-      flipVertical?: boolean;
+      rotation?: number
+      flipVertical?: boolean
     }
 
     export interface ConstraintProps {
-      x?: number; // | HorizontalConstraint
-      y?: number; // | VerticalConstraint
+      x?: number // | HorizontalConstraint
+      y?: number // | VerticalConstraint
     }
 
     export interface LayoutProps {
-      spacing?: number | "auto";
-      padding?: Padding;
-      direction?: "horizontal" | "vertical";
-      horizontalAlignItems?: AlignItems;
-      verticalAlignItems?: AlignItems;
+      spacing?: number | 'auto'
+      padding?: Padding
+      direction?: 'horizontal' | 'vertical'
+      horizontalAlignItems?: AlignItems
+      verticalAlignItems?: AlignItems
     }
 
     export interface TextStyleProps {
-      fontFamily?: string;
-      letterSpacing?: number | string;
-      textDecoration?: "none" | "strikethrough" | "underline";
-      fontSize?: number;
-      italic?: boolean;
-      textCase?:
-        | "upper"
-        | "lower"
-        | "title"
-        | "original"
-        | "small-caps"
-        | "small-caps-forced";
-      fontWeight?: FontWeight;
-      fontPostScriptName?: string;
-      href?: string;
-      fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[];
+      fontFamily?: string
+      letterSpacing?: number | string
+      textDecoration?: 'none' | 'strikethrough' | 'underline'
+      fontSize?: number
+      italic?: boolean
+      textCase?: 'upper' | 'lower' | 'title' | 'original' | 'small-caps' | 'small-caps-forced'
+      fontWeight?: FontWeight
+      fontPostScriptName?: string
+      href?: string
+      fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
     }
 
     ///
@@ -484,30 +454,25 @@ declare global {
         Required<SizeProps>,
         TransformProps,
         CornerProps {
-      overflow?: Overflow;
+      overflow?: Overflow
     }
 
     export interface AutoLayoutProps
-      extends Omit<FrameProps, "width" | "height">,
+      extends Omit<FrameProps, 'width' | 'height'>,
         LayoutProps,
         AutoLayoutSizeProps {}
 
-    export interface EllipseProps
-      extends BaseProps,
-        GeometryProps,
-        TransformProps,
-        SizeProps {}
+    export interface EllipseProps extends BaseProps, GeometryProps, TransformProps, SizeProps {}
 
-    export interface ImageProps
-      extends Omit<RectangleProps, "fill"> {
-      src: string | ImagePaint;
+    export interface ImageProps extends Omit<RectangleProps, 'fill'> {
+      src: string | ImagePaint
     }
 
     export interface LineProps extends BaseProps, TransformProps {
-      stroke?: HexCode | Color | SolidPaint | SolidPaint[];
-      strokeWidth?: number;
-      length: number | "fill-parent";
-      direction?: "horizontal" | "vertical";
+      stroke?: HexCode | Color | SolidPaint | SolidPaint[]
+      strokeWidth?: number
+      length: number | 'fill-parent'
+      direction?: 'horizontal' | 'vertical'
     }
 
     export interface RectangleProps
@@ -525,7 +490,7 @@ declare global {
         PathProps {}
 
     export interface ParagraphProps {
-      spacing: number;
+      spacing: number
     }
 
     export interface SpanProps extends TextStyleProps {}
@@ -536,15 +501,15 @@ declare global {
         TransformProps,
         Omit<GeometryProps, 'fill'>,
         TextStyleProps {
-      paragraphIndent?: number;
-      paragraphSpacing?: number;
-      horizontalAlignText?: "left" | "right" | "center" | "justified";
-      verticalAlignText?: "top" | "center" | "bottom";
-      lineHeight?: number | string | "auto";
+      paragraphIndent?: number
+      paragraphSpacing?: number
+      horizontalAlignText?: 'left' | 'right' | 'center' | 'justified'
+      verticalAlignText?: 'top' | 'center' | 'bottom'
+      lineHeight?: number | string | 'auto'
     }
 
-    export type ComponentProps = AutoLayoutProps | FrameProps;
+    export type ComponentProps = AutoLayoutProps | FrameProps
   }
 } // declare global
 
-export {};
+export {}
