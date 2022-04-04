@@ -4,14 +4,15 @@ jobs:
   test-typings-compile:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v2
-    - run: npm install typescript
-    - run: npm test
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: npm install typescript
+      - run: npm test
+      - run: npm run prettier:check
 
   test-usage-script:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v2
-    - run: ./test-usage.sh
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: ./test-usage.sh
