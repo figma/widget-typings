@@ -39,6 +39,11 @@ declare global {
 
     useEffect(effect: () => (() => void) | void): void
 
+    useStickable(onStuckStatusChanged?: (e: WidgetStuckEvent) => void | Promise<void>): void
+    useStickableHost(
+      onAttachmentsChanged?: (e: WidgetAttachedStickablesChangedEvent) => void | Promise<void>,
+    ): void
+
     waitForTask(promise: Promise<any>): void
 
     // Components
@@ -49,6 +54,22 @@ declare global {
     Ellipse: Ellipse
     Text: TextComponent
     SVG: SVG
+    Input: InputComponent
+    Line: Line
+    Fragment: Fragment
+  }
+
+  interface WidgetStuckEvent {
+    // This is the id of the new node that your widget is stuck to
+    // or null if it is no longer stuck to anything
+    newHostId: string | null
+    // This is the id of the node that your widget was stuck to or null if it isn't stuck to anything
+    oldHostId: string | null
+  }
+
+  interface WidgetAttachedStickablesChangedEvent {
+    stuckNodeIds: string[]
+    unstuckNodeIds: string[]
   }
 
   type SyncedMap<T = any> = {
@@ -65,6 +86,8 @@ declare global {
     entries(): [string, T][]
   }
 
+  type Fragment = FunctionalWidget<{ key?: any }>
+
   type AutoLayout = FunctionalWidget<AutoLayoutProps>
   type Frame = FunctionalWidget<FrameProps>
 
@@ -73,8 +96,11 @@ declare global {
   type ImageComponent = FunctionalWidget<ImageProps>
 
   type Ellipse = FunctionalWidget<EllipseProps>
+  type Line = FunctionalWidget<LineProps>
 
   type TextComponent = FunctionalWidget<TextProps>
+
+  type InputComponent = FunctionalWidget<InputProps>
 
   type SVG = FunctionalWidget<SVGProps>
 
@@ -128,7 +154,10 @@ declare global {
     | WidgetPropertyMenuDropdownItem
 
   type WidgetPropertyMenu = WidgetPropertyMenuItem[]
-  type WidgetPropertyEvent = { propertyName: string; propertyValue?: string | undefined }
+  type WidgetPropertyEvent = {
+    propertyName: string
+    propertyValue?: string | undefined
+  }
 
   type WidgetClickEvent = {
     // canvasX and canvasY are the coordinates of the click relative to the canvas
@@ -147,6 +176,20 @@ declare global {
     children?: string | string[]
   }
 
+  interface TextEditEvent {
+    characters: string
+  }
+  interface PlaceholderProps extends WidgetJSX.BlendProps, Omit<WidgetJSX.TextStyleProps, 'href'> {}
+  interface InputProps extends Omit<TextProps, 'children' | 'width'> {
+    placeholder?: string
+    onTextEditEnd: (e: TextEditEvent) => void
+    value: string | null
+    placeholderProps?: PlaceholderProps
+    inputFrameProps?: Omit<AutoLayoutProps, 'width'>
+    width?: WidgetJSX.Size
+    inputBehavior?: 'wrap' | 'truncate' | 'multiline'
+  }
+
   interface FrameProps extends BaseProps, WidgetJSX.FrameProps, HasChildrenProps {}
 
   interface AutoLayoutProps extends BaseProps, WidgetJSX.AutoLayoutProps, HasChildrenProps {}
@@ -157,6 +200,10 @@ declare global {
 
   interface ImageProps extends BaseProps, WidgetJSX.ImageProps {}
 
+  interface LineProps extends BaseProps, Omit<WidgetJSX.LineProps, 'direction' | 'length'> {
+    length?: WidgetJSX.LineProps['length']
+  }
+
   interface SVGProps extends BaseProps, Partial<WidgetJSX.FrameProps> {
     src: string
   }
@@ -165,6 +212,7 @@ declare global {
     // We have a custom onClick api that returns a promise
     onClick?: (event: WidgetClickEvent) => Promise<any> | void
     key?: string | number
+    tooltip?: string
   }
 
   interface HasChildrenProps {
@@ -373,12 +421,25 @@ declare global {
       | 'black'
     export type FontWeight = FontWeightNumerical | FontWeightString
 
+    export type ArcData = {
+      readonly startingAngle: number
+      readonly endingAngle: number
+      readonly innerRadius: number
+    }
+
+    interface HoverStyle {
+      fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
+      stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
+      opacity?: number
+    }
+
     ///
     /// MIXINS
     ///
     export interface BaseProps extends BlendProps, ConstraintProps {
       name?: string
       hidden?: boolean
+      hoverStyle?: HoverStyle
     }
 
     export interface GeometryProps {
@@ -419,8 +480,8 @@ declare global {
     }
 
     export interface ConstraintProps {
-      x?: number // | HorizontalConstraint
-      y?: number // | VerticalConstraint
+      x?: number | HorizontalConstraint
+      y?: number | VerticalConstraint
     }
 
     export interface LayoutProps {
@@ -462,7 +523,9 @@ declare global {
         LayoutProps,
         AutoLayoutSizeProps {}
 
-    export interface EllipseProps extends BaseProps, GeometryProps, TransformProps, SizeProps {}
+    export interface EllipseProps extends BaseProps, GeometryProps, TransformProps, SizeProps {
+      arcData?: ArcData
+    }
 
     export interface ImageProps extends Omit<RectangleProps, 'fill'> {
       src: string | ImagePaint
