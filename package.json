@@ -1,6 +1,6 @@
 {
   "name": "@figma/widget-typings",
-  "version": "1.0.4",
+  "version": "1.2.0",
   "description": "Typings for the Figma Widget API",
   "main": "",
   "scripts": {
