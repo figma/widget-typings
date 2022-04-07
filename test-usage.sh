@@ -50,6 +50,16 @@ function CustomComponent({ label }: { label: string }) {
   return <Text>{label}</Text>
 }
 
+function CustomComponentWithChildren({ children }: {
+  children: FigmaDeclarativeNode | FigmaDeclarativeNode[]
+}) {
+  return (
+    <AutoLayout>
+      {children}
+    </AutoLayout>
+  )
+}
+
 function Widget() {
   const [foo, setFoo] = useSyncedState("foo", () => 0)
   const [bar, setBar] = useSyncedState("bar", 0)
@@ -113,7 +123,9 @@ function Widget() {
         {" "}
         {bar}
       </Text>
-      <CustomComponent key={1} label="Hello" />
+      <CustomComponentWithChildren>
+        <CustomComponent key={1} label="Hello" />
+      </CustomComponentWithChildren>
       <Frame width={100} height={200}>
         <Text
           x={{ type: 'left', offset: 5 }}

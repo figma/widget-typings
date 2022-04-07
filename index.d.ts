@@ -16,6 +16,10 @@ declare global {
     interface IntrinsicAttributes {
       key?: string | number | null | undefined
     }
+
+    interface ElementChildrenAttribute {
+      children: {}
+    }
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -173,7 +177,7 @@ declare global {
 
   interface TextProps extends BaseProps, WidgetJSX.TextProps {
     font?: { family: string; style: string }
-    children?: string | string[]
+    children?: string | number | (string | number)[]
   }
 
   interface TextEditEvent {
