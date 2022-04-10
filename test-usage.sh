@@ -36,6 +36,7 @@ const {
   AutoLayout,
   Text,
   Frame,
+  Fragment,
   Ellipse,
   Line,
   useSyncedState,
@@ -133,6 +134,9 @@ function Widget() {
         >
           Offsets
         </Text>
+        <Fragment>
+          <Line />
+        </Fragment>
         <>
           <Line />
           <Ellipse arcData={{ startingAngle: 1, endingAngle: 1, innerRadius: 1}} />
