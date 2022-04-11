@@ -90,7 +90,7 @@ declare global {
     entries(): [string, T][]
   }
 
-  type Fragment = FunctionalWidget<{ key?: any }>
+  type Fragment = FunctionalWidget<FragmentProps>
 
   type AutoLayout = FunctionalWidget<AutoLayoutProps>
   type Frame = FunctionalWidget<FrameProps>
@@ -192,6 +192,10 @@ declare global {
     inputFrameProps?: Omit<AutoLayoutProps, 'width'>
     width?: WidgetJSX.Size
     inputBehavior?: 'wrap' | 'truncate' | 'multiline'
+  }
+
+  interface FragmentProps extends HasChildrenProps {
+    key?: BaseProps['key']
   }
 
   interface FrameProps extends BaseProps, WidgetJSX.FrameProps, HasChildrenProps {}
