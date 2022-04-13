@@ -39,6 +39,7 @@ const {
   Fragment,
   Ellipse,
   Line,
+  Rectangle,
   useSyncedState,
   useSyncedMap,
   useEffect,
@@ -136,7 +137,7 @@ function Widget() {
         </Text>
         <Fragment>
           <Line />
-          <Rectangle width={100} height={100} stroke='#000' strokeDashPattern=[10, 20]/>
+          <Rectangle width={100} height={100} stroke='#000' strokeDashPattern={[10, 20]}/>
         </Fragment>
         <>
           <Line strokeCap='round'/>
