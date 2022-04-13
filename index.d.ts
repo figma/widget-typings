@@ -455,6 +455,7 @@ declare global {
       stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
       strokeWidth?: number
       strokeAlign?: StrokeAlign
+      strokeDashPattern?: number[]
     }
 
     export interface PathProps {
@@ -542,6 +543,7 @@ declare global {
     export interface LineProps extends BaseProps, TransformProps {
       stroke?: HexCode | Color | SolidPaint | SolidPaint[]
       strokeWidth?: number
+      strokeCap?: 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
       length: number | 'fill-parent'
       direction?: 'horizontal' | 'vertical'
     }
