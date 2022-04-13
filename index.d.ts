@@ -543,6 +543,7 @@ declare global {
     export interface LineProps extends BaseProps, TransformProps {
       stroke?: HexCode | Color | SolidPaint | SolidPaint[]
       strokeWidth?: number
+      strokeDashPattern?: number[]
       strokeCap?: 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
       length: number | 'fill-parent'
       direction?: 'horizontal' | 'vertical'
