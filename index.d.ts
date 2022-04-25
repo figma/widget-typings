@@ -325,7 +325,6 @@ declare global {
     export type Size = number | 'fill-parent'
     export type AutolayoutSize = Size | 'hug-contents'
     export type StrokeAlign = 'inside' | 'outside' | 'center'
-    export type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
     export type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
     export type Overflow = 'visible' | 'hidden' | 'scroll'
 
@@ -456,7 +455,6 @@ declare global {
       stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
       strokeWidth?: number
       strokeAlign?: StrokeAlign
-      strokeDashPattern?: number[]
     }
 
     export interface PathProps {
@@ -544,8 +542,6 @@ declare global {
     export interface LineProps extends BaseProps, TransformProps {
       stroke?: HexCode | Color | SolidPaint | SolidPaint[]
       strokeWidth?: number
-      strokeDashPattern?: number[]
-      strokeCap?: StrokeCap
       length: number | 'fill-parent'
       direction?: 'horizontal' | 'vertical'
     }
