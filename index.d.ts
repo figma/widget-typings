@@ -14,7 +14,7 @@ declare global {
      * inside your component or have to validate them.
      */
     interface IntrinsicAttributes {
-      key?: string | number | null | undefined
+      key?: string | number | undefined
     }
 
     interface ElementChildrenAttribute {
