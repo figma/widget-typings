@@ -304,8 +304,19 @@ declare global {
 
     export type Paint = SolidPaint | GradientPaint | ImagePaint
 
-    export interface ShadowEffect {
-      type: 'inner-shadow' | 'drop-shadow'
+    export interface DropShadowEffect {
+      type: 'drop-shadow'
+      color: HexCode | Color
+      offset: Vector
+      blur: number
+      blendMode?: BlendMode
+      spread?: number
+      visible?: boolean
+      showShadowBehindNode?: boolean
+    }
+
+    export interface InnerShadowEffect {
+      type: 'inner-shadow'
       color: HexCode | Color
       offset: Vector
       blur: number
@@ -313,6 +324,8 @@ declare global {
       spread?: number
       visible?: boolean
     }
+
+    export type ShadowEffect = DropShadowEffect | InnerShadowEffect
 
     export interface BlurEffect {
       type: 'layer-blur' | 'background-blur'
