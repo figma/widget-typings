@@ -513,7 +513,7 @@ declare global {
       spacing?: number | 'auto'
       padding?: Padding
       direction?: 'horizontal' | 'vertical'
-      horizontalAlignItems?: AlignItems
+      horizontalAlignItems?: Omit<AlignItems, 'baseline'>
       verticalAlignItems?: AlignItems
     }
 
