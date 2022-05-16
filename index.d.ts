@@ -239,7 +239,7 @@ declare global {
       a: number
     }
 
-    export type AlignItems = 'center' | 'start' | 'end'
+    export type AlignItems = 'center' | 'start' | 'end' | 'baseline'
     export type BlendMode =
       | 'normal'
       | 'multiply'
@@ -462,6 +462,7 @@ declare global {
       name?: string
       hidden?: boolean
       hoverStyle?: HoverStyle
+      positioning?: 'auto' | 'absolute'
     }
 
     export interface GeometryProps {
