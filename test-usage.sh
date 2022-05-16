@@ -58,6 +58,7 @@ function CustomComponentWithChildren({ children }: {
   return (
     <AutoLayout>
       {children}
+      <Text x={0} y={0} positioning="absolute">🍟</Text>
     </AutoLayout>
   )
 }

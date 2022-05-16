@@ -239,7 +239,7 @@ declare global {
       a: number
     }
 
-    export type AlignItems = 'center' | 'start' | 'end'
+    export type AlignItems = 'center' | 'start' | 'end' | 'baseline'
     export type BlendMode =
       | 'normal'
       | 'multiply'
@@ -462,6 +462,7 @@ declare global {
       name?: string
       hidden?: boolean
       hoverStyle?: HoverStyle
+      positioning?: 'auto' | 'absolute'
     }
 
     export interface GeometryProps {
@@ -499,7 +500,8 @@ declare global {
 
     export interface TransformProps {
       rotation?: number
-      flipVertical?: boolean
+      // TODO: Add this back when we actually implement this
+      // flipVertical?: boolean
     }
 
     export interface ConstraintProps {
@@ -511,7 +513,7 @@ declare global {
       spacing?: number | 'auto'
       padding?: Padding
       direction?: 'horizontal' | 'vertical'
-      horizontalAlignItems?: AlignItems
+      horizontalAlignItems?: Omit<AlignItems, 'baseline'>
       verticalAlignItems?: AlignItems
     }
 
