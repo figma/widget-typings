@@ -500,7 +500,8 @@ declare global {
 
     export interface TransformProps {
       rotation?: number
-      flipVertical?: boolean
+      // TODO: Add this back when we actually implement this
+      // flipVertical?: boolean
     }
 
     export interface ConstraintProps {
