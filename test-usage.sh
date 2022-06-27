@@ -40,6 +40,7 @@ const {
   Ellipse,
   Line,
   Rectangle,
+  Span,
   useSyncedState,
   useSyncedMap,
   useEffect,
@@ -125,6 +126,7 @@ function Widget() {
         {foo}
         {" "}
         {bar}
+        <Span>Hello <Span>World</Span></Span>
       </Text>
       <CustomComponentWithChildren>
         <CustomComponent key={1} label="Hello" />

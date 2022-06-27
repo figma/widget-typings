@@ -61,6 +61,7 @@ declare global {
     Input: InputComponent
     Line: Line
     Fragment: Fragment
+    Span: Span
   }
 
   interface WidgetStuckEvent {
@@ -107,8 +108,19 @@ declare global {
   type InputComponent = FunctionalWidget<InputProps>
 
   type SVG = FunctionalWidget<SVGProps>
+  type Span = (props: SpanProps) => FigmaVirtualNode<'span'>
 
-  type FigmaDeclarativeNode = Object | any[] | string | null | undefined | false
+  type FigmaVirtualNode<T> = { __type: T }
+
+  type FigmaDeclarativeChildren<T> =
+    | FigmaVirtualNode<T>
+    | FigmaDeclarativeChildren<T>[]
+    | string
+    | null
+    | undefined
+    | false
+
+  type FigmaDeclarativeNode = FigmaDeclarativeChildren<any>
   type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
 
   type PropertyMenuItemType = 'action' | 'separator' | 'color-selector' | 'dropdown'
@@ -175,10 +187,19 @@ declare global {
     offsetY: number
   }
 
-  interface TextProps extends BaseProps, WidgetJSX.TextProps {
-    font?: { family: string; style: string }
-    children?: string | number | (string | number)[]
+  interface TextChildren {
+    children?:
+      | FigmaVirtualNode<'span'>
+      | string
+      | number
+      | (FigmaVirtualNode<'span'> | string | number)[]
   }
+
+  interface TextProps extends BaseProps, WidgetJSX.TextProps, TextChildren {
+    font?: { family: string; style: string }
+  }
+
+  interface SpanProps extends WidgetJSX.SpanProps, TextChildren {}
 
   interface TextEditEvent {
     characters: string
