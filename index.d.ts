@@ -123,7 +123,7 @@ declare global {
   type FigmaDeclarativeNode = FigmaDeclarativeChildren<any>
   type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
 
-  type PropertyMenuItemType = 'action' | 'separator' | 'color-selector' | 'dropdown'
+  type PropertyMenuItemType = 'action' | 'separator' | 'color-selector' | 'dropdown' | 'link'
 
   type HexCode = string
   interface PropertyMenuItem {
@@ -136,7 +136,11 @@ declare global {
     itemType: 'action'
     icon?: string
   }
-
+  interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
+    itemType: 'link'
+    icon?: string
+    href: string
+  }
   interface WidgetPropertyMenuSeparatorItem {
     itemType: 'separator'
   }
@@ -168,6 +172,7 @@ declare global {
     | WidgetPropertyMenuSeparatorItem
     | WidgetPropertyMenuColorItem
     | WidgetPropertyMenuDropdownItem
+    | WidgetPropertyMenuLinkItem
 
   type WidgetPropertyMenu = WidgetPropertyMenuItem[]
   type WidgetPropertyEvent = {

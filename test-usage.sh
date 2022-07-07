@@ -101,6 +101,12 @@ function Widget() {
         selectedOption: 'option1',
         options: [{option: 'option1', label: 'Option 1'}],
       },
+      {
+        itemType: 'link',
+        propertyName: 'link',
+        tooltip: 'link',
+        href: 'www.google.com',
+      },
     ],
     ({propertyName, propertyValue}) => {}
   )
