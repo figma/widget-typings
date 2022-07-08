@@ -102,6 +102,12 @@ function Widget() {
         options: [{option: 'option1', label: 'Option 1'}],
       },
       {
+        itemType: 'toggle',
+        tooltip: 'Toggle',
+        propertyName: 'toggle',
+        isToggled: true,
+      },
+      {
         itemType: 'link',
         propertyName: 'link',
         tooltip: 'link',
