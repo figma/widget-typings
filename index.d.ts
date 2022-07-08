@@ -144,7 +144,7 @@ declare global {
   }
   interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
     itemType: 'link'
-    icon?: string
+    icon?: string | null
     href: string
   }
   interface WidgetPropertyMenuSeparatorItem {

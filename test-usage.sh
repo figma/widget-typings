@@ -113,6 +113,13 @@ function Widget() {
         tooltip: 'link',
         href: 'www.google.com',
       },
+      {
+        tooltip: 'link with icon null',
+        propertyName: 'Link',
+        itemType: 'link',
+        href: 'https://asana.com',
+        icon: null,
+      },
     ],
     ({propertyName, propertyValue}) => {}
   )
