@@ -1,4 +1,4 @@
-// Figma Widget API version 1, update 1
+// Figma Widget API version 1, update 5
 
 declare global {
   // Extend the global widget api
