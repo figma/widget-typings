@@ -30,7 +30,12 @@ declare global {
     h(...args: any[]): FigmaDeclarativeNode
 
     // Hooks
+
+    /**
+     * @deprecated use useWidgetNodeId instead
+     */
     useWidgetId(): string
+    useWidgetNodeId(): string
     useSyncedState<T = any>(
       name: string,
       defaultValue: T | (() => T),
