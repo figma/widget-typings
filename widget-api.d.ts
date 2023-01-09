@@ -155,7 +155,7 @@ interface TextChildren {
     | number
     | (FigmaVirtualNode<'span'> | string | number)[]
 }
-interface TextProps extends BaseProps, WidgetJSXTextProps, TextChildren {
+interface TextProps extends BaseProps, WidgetJSX.WidgetJSXTextProps, TextChildren {
   font?: {
     family: string
     style: string
@@ -177,19 +177,19 @@ interface InputProps extends Omit<TextProps, 'children' | 'width'> {
 interface FragmentProps extends HasChildrenProps {
   key?: BaseProps['key']
 }
-interface FrameProps extends BaseProps, WidgetJSXFrameProps, HasChildrenProps {}
-interface AutoLayoutProps extends BaseProps, WidgetJSXAutoLayoutProps, HasChildrenProps {}
-interface EllipseProps extends BaseProps, WidgetJSXEllipseProps {}
-interface RectangleProps extends BaseProps, WidgetJSXRectangleProps {}
-interface ImageProps extends BaseProps, WidgetJSXImageProps {}
-interface LineProps extends BaseProps, WidgetJSXLineProps {
+interface FrameProps extends BaseProps, WidgetJSX.WidgetJSXFrameProps, HasChildrenProps {}
+interface AutoLayoutProps extends BaseProps, WidgetJSX.WidgetJSXAutoLayoutProps, HasChildrenProps {}
+interface EllipseProps extends BaseProps, WidgetJSX.WidgetJSXEllipseProps {}
+interface RectangleProps extends BaseProps, WidgetJSX.WidgetJSXRectangleProps {}
+interface ImageProps extends BaseProps, WidgetJSX.WidgetJSXImageProps {}
+interface LineProps extends BaseProps, WidgetJSX.WidgetJSXLineProps {
   length?: Size
   strokeCap?: StrokeCap
 }
-interface SVGProps extends BaseProps, Partial<WidgetJSXFrameProps> {
+interface SVGProps extends BaseProps, Partial<WidgetJSX.WidgetJSXFrameProps> {
   src: string
 }
-interface BaseProps extends WidgetJSXBaseProps {
+interface BaseProps extends WidgetJSX.WidgetJSXBaseProps {
   onClick?: (event: WidgetClickEvent) => Promise<any> | void
   key?: string | number
   hoverStyle?: HoverStyle
