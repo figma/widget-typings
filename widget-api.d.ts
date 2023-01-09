@@ -164,14 +164,14 @@ interface TextProps extends BaseProps, WidgetJSX.WidgetJSXTextProps, TextChildre
 interface TextEditEvent {
   characters: string
 }
-interface PlaceholderProps extends BlendProps, Omit<TextStyleProps, 'href'> {}
+interface PlaceholderProps extends WidgetJSX.BlendProps, Omit<WidgetJSX.TextStyleProps, 'href'> {}
 interface InputProps extends Omit<TextProps, 'children' | 'width'> {
   onTextEditEnd: (event: TextEditEvent) => void
   value: string | null
   placeholder?: string
   placeholderProps?: PlaceholderProps
   inputFrameProps?: Omit<AutoLayoutProps, 'width'>
-  width?: Size
+  width?: WidgetJSX.Size
   inputBehavior?: 'wrap' | 'truncate' | 'multiline'
 }
 interface FragmentProps extends HasChildrenProps {
@@ -183,8 +183,8 @@ interface EllipseProps extends BaseProps, WidgetJSX.WidgetJSXEllipseProps {}
 interface RectangleProps extends BaseProps, WidgetJSX.WidgetJSXRectangleProps {}
 interface ImageProps extends BaseProps, WidgetJSX.WidgetJSXImageProps {}
 interface LineProps extends BaseProps, WidgetJSX.WidgetJSXLineProps {
-  length?: Size
-  strokeCap?: StrokeCap
+  length?: WidgetJSX.Size
+  strokeCap?: WidgetJSX.StrokeCap
 }
 interface SVGProps extends BaseProps, Partial<WidgetJSX.WidgetJSXFrameProps> {
   src: string
@@ -192,7 +192,7 @@ interface SVGProps extends BaseProps, Partial<WidgetJSX.WidgetJSXFrameProps> {
 interface BaseProps extends WidgetJSX.WidgetJSXBaseProps {
   onClick?: (event: WidgetClickEvent) => Promise<any> | void
   key?: string | number
-  hoverStyle?: HoverStyle
+  hoverStyle?: WidgetJSX.HoverStyle
   tooltip?: string
   positioning?: 'auto' | 'absolute'
 }
