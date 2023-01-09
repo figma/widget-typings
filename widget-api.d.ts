@@ -199,316 +199,319 @@ interface HasChildrenProps {
   children?: FigmaDeclarativeNode | FigmaDeclarativeNode[]
 }
 declare type HexCode = string
-interface Vector {
-  x: number
-  y: number
-}
-interface Color {
-  r: number
-  g: number
-  b: number
-  a: number
-}
-declare type ArcData = {
-  readonly startingAngle: number
-  readonly endingAngle: number
-  readonly innerRadius: number
-}
-declare type AlignItems = 'center' | 'start' | 'end' | 'baseline'
-declare type BlendMode =
-  | 'normal'
-  | 'multiply'
-  | 'screen'
-  | 'overlay'
-  | 'darken'
-  | 'lighten'
-  | 'color-dodge'
-  | 'color-burn'
-  | 'hard-light'
-  | 'soft-light'
-  | 'difference'
-  | 'exclusion'
-  | 'hue'
-  | 'saturation'
-  | 'color'
-  | 'luminosity'
-declare type PaintType =
-  | 'image'
-  | 'solid'
-  | 'gradient-linear'
-  | 'gradient-radial'
-  | 'gradient-angular'
-  | 'gradient-diamond'
-interface PaintProps {
-  type: PaintType
-  blendMode?: BlendMode
-  visible?: boolean
-  opacity?: number
-}
-interface SolidPaint extends PaintProps {
-  type: 'solid'
-  color: Color | HexCode
-}
-interface ColorStop {
-  position: number
-  color: Color
-}
-interface GradientPaint extends PaintProps {
-  type: 'gradient-linear' | 'gradient-radial' | 'gradient-angular' | 'gradient-diamond'
-  gradientHandlePositions: [Vector, Vector, Vector]
-  gradientStops: ColorStop[]
-}
-declare type Transform = [[number, number, number], [number, number, number]]
-interface ImagePaint extends PaintProps {
-  type: 'image'
-  src: string
-  imageSize?: {
-    width: number
-    height: number
+declare namespace WidgetJSX {
+  export interface Vector {
+    x: number
+    y: number
   }
-  scaleMode?: ScaleMode
-  imageTransform?: Transform
-  scalingFactor?: number
-  rotation?: number
-  imageRef?: string
-}
-declare type Paint = SolidPaint | GradientPaint | ImagePaint
-declare type ShadowEffect = DropShadowEffect | InnerShadowEffect
-interface DropShadowEffect {
-  type: 'drop-shadow'
-  color: HexCode | Color
-  offset: Vector
-  blur: number
-  blendMode?: BlendMode
-  spread?: number
-  visible?: boolean
-  showShadowBehindNode?: boolean
-}
-interface InnerShadowEffect {
-  type: 'inner-shadow'
-  color: HexCode | Color
-  offset: Vector
-  blur: number
-  blendMode?: BlendMode
-  spread?: number
-  visible?: boolean
-}
-interface BlurEffect {
-  type: 'layer-blur' | 'background-blur'
-  blur: number
-  visible?: boolean
-}
-declare type Effect = DropShadowEffect | InnerShadowEffect | BlurEffect
-declare type Size = number | 'fill-parent'
-declare type AutolayoutSize = Size | 'hug-contents'
-declare type StrokeAlign = 'inside' | 'outside' | 'center'
-declare type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
-declare type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
-declare type Overflow = 'visible' | 'hidden' | 'scroll'
-interface TopConstraint {
-  type: 'top'
-  offset: number
-}
-interface BottomConstraint {
-  type: 'bottom'
-  offset: number
-}
-interface TopBottomConstraint {
-  type: 'top-bottom'
-  topOffset: number
-  bottomOffset: number
-}
-interface LeftConstraint {
-  type: 'left'
-  offset: number
-}
-interface RightConstraint {
-  type: 'right'
-  offset: number
-}
-interface LeftRightConstraint {
-  type: 'left-right'
-  leftOffset: number
-  rightOffset: number
-}
-interface CenterConstraint {
-  type: 'center'
-  offset: number
-}
-interface HorizontalScaleConstraint {
-  type: 'horizontal-scale'
-  leftOffsetPercent: number
-  rightOffsetPercent: number
-}
-interface VerticalScaleConstraint {
-  type: 'vertical-scale'
-  topOffsetPercent: number
-  bottomOffsetPercent: number
-}
-declare type VerticalConstraint =
-  | TopConstraint
-  | BottomConstraint
-  | TopBottomConstraint
-  | CenterConstraint
-  | VerticalScaleConstraint
-declare type HorizontalConstraint =
-  | LeftConstraint
-  | RightConstraint
-  | LeftRightConstraint
-  | CenterConstraint
-  | HorizontalScaleConstraint
-declare type CornerRadius =
-  | number
-  | {
-      topLeft?: number
-      topRight?: number
-      bottomLeft?: number
-      bottomRight?: number
+  export interface Color {
+    r: number
+    g: number
+    b: number
+    a: number
+  }
+  export type ArcData = {
+    readonly startingAngle: number
+    readonly endingAngle: number
+    readonly innerRadius: number
+  }
+  export type AlignItems = 'center' | 'start' | 'end' | 'baseline'
+  export type BlendMode =
+    | 'normal'
+    | 'multiply'
+    | 'screen'
+    | 'overlay'
+    | 'darken'
+    | 'lighten'
+    | 'color-dodge'
+    | 'color-burn'
+    | 'hard-light'
+    | 'soft-light'
+    | 'difference'
+    | 'exclusion'
+    | 'hue'
+    | 'saturation'
+    | 'color'
+    | 'luminosity'
+  export type PaintType =
+    | 'image'
+    | 'solid'
+    | 'gradient-linear'
+    | 'gradient-radial'
+    | 'gradient-angular'
+    | 'gradient-diamond'
+  export interface PaintProps {
+    type: PaintType
+    blendMode?: BlendMode
+    visible?: boolean
+    opacity?: number
+  }
+  export interface SolidPaint extends PaintProps {
+    type: 'solid'
+    color: Color | HexCode
+  }
+  export interface ColorStop {
+    position: number
+    color: Color
+  }
+  export interface GradientPaint extends PaintProps {
+    type: 'gradient-linear' | 'gradient-radial' | 'gradient-angular' | 'gradient-diamond'
+    gradientHandlePositions: [Vector, Vector, Vector]
+    gradientStops: ColorStop[]
+  }
+  export type Transform = [[number, number, number], [number, number, number]]
+  export interface ImagePaint extends PaintProps {
+    type: 'image'
+    src: string
+    imageSize?: {
+      width: number
+      height: number
     }
-declare type Path = {
-  path: string
-  windingRule: 'evenodd' | 'nonzero'
+    scaleMode?: ScaleMode
+    imageTransform?: Transform
+    scalingFactor?: number
+    rotation?: number
+    imageRef?: string
+  }
+  export type Paint = SolidPaint | GradientPaint | ImagePaint
+  export type ShadowEffect = DropShadowEffect | InnerShadowEffect
+  export interface DropShadowEffect {
+    type: 'drop-shadow'
+    color: HexCode | Color
+    offset: Vector
+    blur: number
+    blendMode?: BlendMode
+    spread?: number
+    visible?: boolean
+    showShadowBehindNode?: boolean
+  }
+  export interface InnerShadowEffect {
+    type: 'inner-shadow'
+    color: HexCode | Color
+    offset: Vector
+    blur: number
+    blendMode?: BlendMode
+    spread?: number
+    visible?: boolean
+  }
+  export interface BlurEffect {
+    type: 'layer-blur' | 'background-blur'
+    blur: number
+    visible?: boolean
+  }
+  export type Effect = DropShadowEffect | InnerShadowEffect | BlurEffect
+  export type Size = number | 'fill-parent'
+  export type AutolayoutSize = Size | 'hug-contents'
+  export type StrokeAlign = 'inside' | 'outside' | 'center'
+  export type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
+  export type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
+  export type Overflow = 'visible' | 'hidden' | 'scroll'
+  export interface TopConstraint {
+    type: 'top'
+    offset: number
+  }
+  export interface BottomConstraint {
+    type: 'bottom'
+    offset: number
+  }
+  export interface TopBottomConstraint {
+    type: 'top-bottom'
+    topOffset: number
+    bottomOffset: number
+  }
+  export interface LeftConstraint {
+    type: 'left'
+    offset: number
+  }
+  export interface RightConstraint {
+    type: 'right'
+    offset: number
+  }
+  export interface LeftRightConstraint {
+    type: 'left-right'
+    leftOffset: number
+    rightOffset: number
+  }
+  export interface CenterConstraint {
+    type: 'center'
+    offset: number
+  }
+  export interface HorizontalScaleConstraint {
+    type: 'horizontal-scale'
+    leftOffsetPercent: number
+    rightOffsetPercent: number
+  }
+  export interface VerticalScaleConstraint {
+    type: 'vertical-scale'
+    topOffsetPercent: number
+    bottomOffsetPercent: number
+  }
+  export type VerticalConstraint =
+    | TopConstraint
+    | BottomConstraint
+    | TopBottomConstraint
+    | CenterConstraint
+    | VerticalScaleConstraint
+  export type HorizontalConstraint =
+    | LeftConstraint
+    | RightConstraint
+    | LeftRightConstraint
+    | CenterConstraint
+    | HorizontalScaleConstraint
+  export type CornerRadius =
+    | number
+    | {
+        topLeft?: number
+        topRight?: number
+        bottomLeft?: number
+        bottomRight?: number
+      }
+  export type Path = {
+    path: string
+    windingRule: 'evenodd' | 'nonzero'
+  }
+  export type FullPadding = {
+    top?: number
+    left?: number
+    bottom?: number
+    right?: number
+  }
+  export type VerticalHorizontalPadding = {
+    vertical?: number
+    horizontal?: number
+  }
+  export type Padding = number | FullPadding | VerticalHorizontalPadding
+  export type FontWeightNumerical = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+  export type FontWeightString =
+    | 'thin'
+    | 'extra-light'
+    | 'light'
+    | 'normal'
+    | 'medium'
+    | 'semi-bold'
+    | 'bold'
+    | 'extra-bold'
+    | 'black'
+  export type FontWeight = FontWeightNumerical | FontWeightString
+  export interface HoverStyle {
+    fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
+    stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
+    opacity?: number
+  }
+  export interface WidgetJSXBaseProps extends BlendProps, ConstraintProps {
+    name?: string
+    hidden?: boolean
+  }
+  export interface GeometryProps {
+    fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
+    stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
+    strokeWidth?: number
+    strokeAlign?: StrokeAlign
+    strokeDashPattern?: number[]
+  }
+  export interface PathProps {
+    fillPath?: Path[]
+    strokePath?: Path[]
+  }
+  export interface SizePropsRequired {
+    width: Size
+    height: Size
+  }
+  export interface SizeProps {
+    width?: Size
+    height?: Size
+  }
+  export interface AutoLayoutSizeProps {
+    width?: AutolayoutSize
+    height?: AutolayoutSize
+  }
+  export interface CornerProps {
+    cornerRadius?: CornerRadius
+  }
+  export interface BlendProps {
+    blendMode?: BlendMode
+    opacity?: number
+    effect?: Effect | Effect[]
+  }
+  export interface TransformProps {
+    rotation?: number
+  }
+  export interface ConstraintProps {
+    x?: number | HorizontalConstraint
+    y?: number | VerticalConstraint
+  }
+  export interface LayoutProps {
+    spacing?: number | 'auto'
+    padding?: Padding
+    direction?: 'horizontal' | 'vertical'
+    horizontalAlignItems?: Omit<AlignItems, 'baseline'>
+    verticalAlignItems?: AlignItems
+  }
+  export interface TextStyleProps extends NoHrefTextStyleProps {
+    href?: string
+  }
+  export interface NoHrefTextStyleProps {
+    fontFamily?: string
+    letterSpacing?: number | string
+    textDecoration?: 'none' | 'strikethrough' | 'underline'
+    fontSize?: number
+    italic?: boolean
+    textCase?: 'upper' | 'lower' | 'title' | 'original' | 'small-caps' | 'small-caps-forced'
+    fontWeight?: FontWeight
+    fontPostScriptName?: string
+    fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
+  }
+  export interface WidgetJSXFrameProps
+    extends BaseProps,
+      GeometryProps,
+      SizePropsRequired,
+      TransformProps,
+      CornerProps {
+    overflow?: Overflow
+  }
+  export interface WidgetJSXAutoLayoutProps
+    extends Omit<FrameProps, 'width' | 'height'>,
+      LayoutProps,
+      AutoLayoutSizeProps {}
+  export interface WidgetJSXEllipseProps extends BaseProps, GeometryProps, TransformProps, SizeProps {
+    arcData?: ArcData
+  }
+  export interface WidgetJSXImageProps extends Omit<RectangleProps, 'fill'> {
+    src: string | ImagePaint
+  }
+  export interface WidgetJSXLineProps
+    extends BaseProps,
+      TransformProps,
+      Pick<GeometryProps, 'stroke' | 'strokeWidth' | 'strokeDashPattern'> {}
+  export interface WidgetJSXRectangleProps
+    extends BaseProps,
+      GeometryProps,
+      SizePropsRequired,
+      TransformProps,
+      CornerProps {}
+  export interface WidgetJSXSVGProps
+    extends BaseProps,
+      GeometryProps,
+      SizeProps,
+      TransformProps,
+      PathProps {}
+  export interface ParagraphProps {
+    spacing: number
+  }
+  export interface SpanProps extends TextStyleProps, TextChildren {}
+  export interface WidgetJSXTextProps
+    extends BaseProps,
+      AutoLayoutSizeProps,
+      TransformProps,
+      Omit<GeometryProps, 'fill'>,
+      TextStyleProps {
+    paragraphIndent?: number
+    paragraphSpacing?: number
+    horizontalAlignText?: 'left' | 'right' | 'center' | 'justified'
+    verticalAlignText?: 'top' | 'center' | 'bottom'
+    lineHeight?: number | string | 'auto'
+  }
+  export type ComponentProps = AutoLayoutProps | FrameProps
+  {}
+  
 }
-declare type FullPadding = {
-  top?: number
-  left?: number
-  bottom?: number
-  right?: number
-}
-declare type VerticalHorizontalPadding = {
-  vertical?: number
-  horizontal?: number
-}
-declare type Padding = number | FullPadding | VerticalHorizontalPadding
-declare type FontWeightNumerical = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-declare type FontWeightString =
-  | 'thin'
-  | 'extra-light'
-  | 'light'
-  | 'normal'
-  | 'medium'
-  | 'semi-bold'
-  | 'bold'
-  | 'extra-bold'
-  | 'black'
-declare type FontWeight = FontWeightNumerical | FontWeightString
-interface HoverStyle {
-  fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
-  stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
-  opacity?: number
-}
-interface WidgetJSXBaseProps extends BlendProps, ConstraintProps {
-  name?: string
-  hidden?: boolean
-}
-interface GeometryProps {
-  fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
-  stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
-  strokeWidth?: number
-  strokeAlign?: StrokeAlign
-  strokeDashPattern?: number[]
-}
-interface PathProps {
-  fillPath?: Path[]
-  strokePath?: Path[]
-}
-interface SizePropsRequired {
-  width: Size
-  height: Size
-}
-interface SizeProps {
-  width?: Size
-  height?: Size
-}
-interface AutoLayoutSizeProps {
-  width?: AutolayoutSize
-  height?: AutolayoutSize
-}
-interface CornerProps {
-  cornerRadius?: CornerRadius
-}
-interface BlendProps {
-  blendMode?: BlendMode
-  opacity?: number
-  effect?: Effect | Effect[]
-}
-interface TransformProps {
-  rotation?: number
-}
-interface ConstraintProps {
-  x?: number | HorizontalConstraint
-  y?: number | VerticalConstraint
-}
-interface LayoutProps {
-  spacing?: number | 'auto'
-  padding?: Padding
-  direction?: 'horizontal' | 'vertical'
-  horizontalAlignItems?: Omit<AlignItems, 'baseline'>
-  verticalAlignItems?: AlignItems
-}
-interface TextStyleProps extends NoHrefTextStyleProps {
-  href?: string
-}
-interface NoHrefTextStyleProps {
-  fontFamily?: string
-  letterSpacing?: number | string
-  textDecoration?: 'none' | 'strikethrough' | 'underline'
-  fontSize?: number
-  italic?: boolean
-  textCase?: 'upper' | 'lower' | 'title' | 'original' | 'small-caps' | 'small-caps-forced'
-  fontWeight?: FontWeight
-  fontPostScriptName?: string
-  fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
-}
-interface WidgetJSXFrameProps
-  extends BaseProps,
-    GeometryProps,
-    SizePropsRequired,
-    TransformProps,
-    CornerProps {
-  overflow?: Overflow
-}
-interface WidgetJSXAutoLayoutProps
-  extends Omit<FrameProps, 'width' | 'height'>,
-    LayoutProps,
-    AutoLayoutSizeProps {}
-interface WidgetJSXEllipseProps extends BaseProps, GeometryProps, TransformProps, SizeProps {
-  arcData?: ArcData
-}
-interface WidgetJSXImageProps extends Omit<RectangleProps, 'fill'> {
-  src: string | ImagePaint
-}
-interface WidgetJSXLineProps
-  extends BaseProps,
-    TransformProps,
-    Pick<GeometryProps, 'stroke' | 'strokeWidth' | 'strokeDashPattern'> {}
-interface WidgetJSXRectangleProps
-  extends BaseProps,
-    GeometryProps,
-    SizePropsRequired,
-    TransformProps,
-    CornerProps {}
-interface WidgetJSXSVGProps
-  extends BaseProps,
-    GeometryProps,
-    SizeProps,
-    TransformProps,
-    PathProps {}
-interface ParagraphProps {
-  spacing: number
-}
-interface SpanProps extends TextStyleProps, TextChildren {}
-interface WidgetJSXTextProps
-  extends BaseProps,
-    AutoLayoutSizeProps,
-    TransformProps,
-    Omit<GeometryProps, 'fill'>,
-    TextStyleProps {
-  paragraphIndent?: number
-  paragraphSpacing?: number
-  horizontalAlignText?: 'left' | 'right' | 'center' | 'justified'
-  verticalAlignText?: 'top' | 'center' | 'bottom'
-  lineHeight?: number | string | 'auto'
-}
-declare type ComponentProps = AutoLayoutProps | FrameProps
-{}
