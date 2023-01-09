@@ -67,6 +67,9 @@ interface WidgetAttachedStickablesChangedEvent {
 }
 
 interface SyncedMap<T> {
+  /** @deprecated use size instead */
+  readonly length: number
+
   readonly size: number
   has(key: string): boolean
   get(key: string): T | undefined
