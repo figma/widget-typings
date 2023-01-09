@@ -1,3 +1,4 @@
+/* widget-typings are auto-generated. Do not update them directly. See plugin-docs/ for instructions. */
 interface WidgetAPI {
   register(component: FunctionalWidget<any>): void
   h(...args: any[]): FigmaDeclarativeNode
@@ -512,6 +513,5 @@ declare namespace WidgetJSX {
     lineHeight?: number | string | 'auto'
   }
   export type ComponentProps = AutoLayoutProps | FrameProps
-  {}
   
 }
