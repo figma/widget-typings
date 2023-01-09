@@ -66,7 +66,7 @@ declare type TextComponent = FunctionalWidget<TextProps>
 declare type Input = FunctionalWidget<InputProps>
 declare type SVG = FunctionalWidget<SVGProps>
 declare type Fragment = FunctionalWidget<FragmentProps>
-declare type Span = (props: SpanProps) => FigmaVirtualNode<'span'>
+declare type Span = (props: WidgetJSX.SpanProps) => FigmaVirtualNode<'span'>
 declare type FigmaVirtualNode<T> = {
   __type: T
 }
