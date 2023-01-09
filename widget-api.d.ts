@@ -1,5 +1,6 @@
 interface WidgetAPI {
   register(component: FunctionalWidget<any>): void
+  h(...args: any[]): FigmaDeclarativeNode
 
   // Hooks
 
