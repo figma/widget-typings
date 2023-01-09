@@ -109,7 +109,12 @@ declare type PropertyMenuItemType =
   | 'toggle'
   | 'link'
 
-interface WidgetPropertyMenuActionItem {
+interface PropertyMenuItem {
+  tooltip: string
+  propertyName: string
+  itemType: PropertyMenuItemType
+}
+interface WidgetPropertyMenuActionItem extends PropertyMenuItem {
   itemType: 'action'
   tooltip: string
   propertyName: string
@@ -125,7 +130,7 @@ interface WidgetPropertyMenuColorSelectorOption {
   option: HexCode
 }
 
-interface WidgetPropertyMenuColorItem {
+interface WidgetPropertyMenuColorItem extends PropertyMenuItem {
   itemType: 'color-selector'
   tooltip: string
   propertyName: string
@@ -137,7 +142,7 @@ interface WidgetPropertyMenuDropdownOption {
   label: string
 }
 
-interface WidgetPropertyMenuDropdownItem {
+interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
   itemType: 'dropdown'
   tooltip: string
   propertyName: string
@@ -145,14 +150,14 @@ interface WidgetPropertyMenuDropdownItem {
   selectedOption: string
 }
 
-interface WidgetPropertyMenuToggleItem {
+interface WidgetPropertyMenuToggleItem extends PropertyMenuItem {
   itemType: 'toggle'
   tooltip: string
   propertyName: string
   isToggled: boolean
   icon?: string
 }
-interface WidgetPropertyMenuLinkItem {
+interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
   itemType: 'link'
   tooltip: string
   propertyName: string
@@ -321,6 +326,7 @@ declare namespace WidgetJSX {
 
   export type Paint = SolidPaint | GradientPaint | ImagePaint
 
+  export type ShadowEffect = DropShadowEffect | InnerShadowEffect
   export interface DropShadowEffect {
     type: 'drop-shadow'
     color: HexCode | Color
