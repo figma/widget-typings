@@ -21,7 +21,6 @@ declare global {
       children: {}
     }
   }
-
 } // declare global
 
 export {}
