@@ -513,5 +513,4 @@ declare namespace WidgetJSX {
     lineHeight?: number | string | 'auto'
   }
   type ComponentProps = AutoLayoutProps | FrameProps
-  
 }
