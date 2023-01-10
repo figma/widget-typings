@@ -2,6 +2,7 @@
 interface WidgetAPI {
   register(component: FunctionalWidget<any>): void
   h(...args: any[]): FigmaDeclarativeNode
+  // @deprecated Use useWidgetNodeId instead.
   useWidgetId(): string
   useWidgetNodeId(): string
   useSyncedState<T>(
@@ -46,6 +47,7 @@ interface WidgetAttachedStickablesChangedEvent {
   unstuckNodeIds: string[]
 }
 interface SyncedMap<T> {
+  // @deprecated Use size instead.
   readonly length: number
   readonly size: number
   has(key: string): boolean
