@@ -1,12 +1,8 @@
+/* widget-typings are auto-generated. Do not update them directly. See plugin-docs/ for instructions. */
 interface WidgetAPI {
   register(component: FunctionalWidget<any>): void
   h(...args: any[]): FigmaDeclarativeNode
-
-  // Hooks
-
-  /**
-   * @deprecated use useWidgetNodeId instead
-   */
+  /** @deprecated Use useWidgetNodeId instead. */
   useWidgetId(): string
   useWidgetNodeId(): string
   useSyncedState<T>(
@@ -18,17 +14,12 @@ interface WidgetAPI {
     items: WidgetPropertyMenuItem[],
     onChange: (event: WidgetPropertyEvent) => void | Promise<void>,
   ): void
-
   useEffect(effect: () => (() => void) | void): void
-
   useStickable(onStuckStatusChanged?: (e: WidgetStuckEvent) => void | Promise<void>): void
   useStickableHost(
     onAttachmentsChanged?: (e: WidgetAttachedStickablesChangedEvent) => void | Promise<void>,
   ): void
-
   waitForTask(task: Promise<any>): void
-
-  // Components
   AutoLayout: AutoLayout
   Frame: Frame
   Image: ImageComponent
@@ -41,35 +32,23 @@ interface WidgetAPI {
   Fragment: Fragment
   Span: Span
 }
-
 interface WidgetClickEvent {
-  // canvasX and canvasY are the coordinates of the click relative to the canvas
-  // this is the same as the absolute position that is used to position a node
   canvasX: number
   canvasY: number
-
-  // offsetX and offsetY are the coordinates of the click relative to the component
-  // that was clicked
   offsetX: number
   offsetY: number
 }
-
 interface WidgetStuckEvent {
-  // This is the id of the new node that your widget is stuck to
-  // or null if it is no longer stuck to anything
   newHostId: string | null
-  // This is the id of the node that your widget was stuck to or null if it isn't stuck to anything
   oldHostId: string | null
 }
 interface WidgetAttachedStickablesChangedEvent {
   stuckNodeIds: string[]
   unstuckNodeIds: string[]
 }
-
 interface SyncedMap<T> {
-  /** @deprecated use size instead */
+  /** @deprecated Use size instead. */
   readonly length: number
-
   readonly size: number
   has(key: string): boolean
   get(key: string): T | undefined
@@ -79,7 +58,6 @@ interface SyncedMap<T> {
   values(): T[]
   entries(): [string, T][]
 }
-
 declare type AutoLayout = FunctionalWidget<AutoLayoutProps>
 declare type Frame = FunctionalWidget<FrameProps>
 declare type Rectangle = FunctionalWidget<RectangleProps>
@@ -91,9 +69,9 @@ declare type Input = FunctionalWidget<InputProps>
 declare type SVG = FunctionalWidget<SVGProps>
 declare type Fragment = FunctionalWidget<FragmentProps>
 declare type Span = (props: WidgetJSX.SpanProps) => FigmaVirtualNode<'span'>
-
-declare type FigmaVirtualNode<T> = { __type: T }
-
+declare type FigmaVirtualNode<T> = {
+  __type: T
+}
 declare type FigmaDeclarativeChildren<T> =
   | FigmaVirtualNode<T>
   | FigmaDeclarativeChildren<T>[]
@@ -101,10 +79,8 @@ declare type FigmaDeclarativeChildren<T> =
   | null
   | undefined
   | false
-
 declare type FigmaDeclarativeNode = FigmaDeclarativeChildren<any>
 declare type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
-
 declare type PropertyMenuItemType =
   | 'action'
   | 'separator'
@@ -112,7 +88,6 @@ declare type PropertyMenuItemType =
   | 'dropdown'
   | 'toggle'
   | 'link'
-
 interface PropertyMenuItem {
   tooltip: string
   propertyName: string
@@ -124,16 +99,13 @@ interface WidgetPropertyMenuActionItem extends PropertyMenuItem {
   propertyName: string
   icon?: string
 }
-
 interface WidgetPropertyMenuSeparatorItem {
   itemType: 'separator'
 }
-
 interface WidgetPropertyMenuColorSelectorOption {
   tooltip: string
   option: HexCode
 }
-
 interface WidgetPropertyMenuColorItem extends PropertyMenuItem {
   itemType: 'color-selector'
   tooltip: string
@@ -145,7 +117,6 @@ interface WidgetPropertyMenuDropdownOption {
   option: string
   label: string
 }
-
 interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
   itemType: 'dropdown'
   tooltip: string
@@ -153,7 +124,6 @@ interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
   options: WidgetPropertyMenuDropdownOption[]
   selectedOption: string
 }
-
 interface WidgetPropertyMenuToggleItem extends PropertyMenuItem {
   itemType: 'toggle'
   tooltip: string
@@ -168,7 +138,6 @@ interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
   href: string
   icon?: string | null
 }
-
 declare type WidgetPropertyMenuItem =
   | WidgetPropertyMenuActionItem
   | WidgetPropertyMenuSeparatorItem
@@ -176,13 +145,11 @@ declare type WidgetPropertyMenuItem =
   | WidgetPropertyMenuDropdownItem
   | WidgetPropertyMenuToggleItem
   | WidgetPropertyMenuLinkItem
-
 declare type WidgetPropertyMenu = WidgetPropertyMenuItem[]
 interface WidgetPropertyEvent {
   propertyName: string
   propertyValue?: string | undefined
 }
-
 interface TextChildren {
   children?:
     | FigmaVirtualNode<'span'>
@@ -191,15 +158,15 @@ interface TextChildren {
     | (FigmaVirtualNode<'span'> | string | number)[]
 }
 interface TextProps extends BaseProps, WidgetJSX.WidgetJSXTextProps, TextChildren {
-  font?: { family: string; style: string }
+  font?: {
+    family: string
+    style: string
+  }
 }
-
 interface TextEditEvent {
   characters: string
 }
-
 interface PlaceholderProps extends WidgetJSX.BlendProps, Omit<WidgetJSX.TextStyleProps, 'href'> {}
-
 interface InputProps extends Omit<TextProps, 'children' | 'width'> {
   onTextEditEnd: (event: TextEditEvent) => void
   value: string | null
@@ -209,64 +176,50 @@ interface InputProps extends Omit<TextProps, 'children' | 'width'> {
   width?: WidgetJSX.Size
   inputBehavior?: 'wrap' | 'truncate' | 'multiline'
 }
-
 interface FragmentProps extends HasChildrenProps {
   key?: BaseProps['key']
 }
-
 interface FrameProps extends BaseProps, WidgetJSX.WidgetJSXFrameProps, HasChildrenProps {}
-
 interface AutoLayoutProps extends BaseProps, WidgetJSX.WidgetJSXAutoLayoutProps, HasChildrenProps {}
-
 interface EllipseProps extends BaseProps, WidgetJSX.WidgetJSXEllipseProps {}
-
 interface RectangleProps extends BaseProps, WidgetJSX.WidgetJSXRectangleProps {}
-
 interface ImageProps extends BaseProps, WidgetJSX.WidgetJSXImageProps {}
-
 interface LineProps extends BaseProps, WidgetJSX.WidgetJSXLineProps {
   length?: WidgetJSX.Size
   strokeCap?: WidgetJSX.StrokeCap
 }
-
 interface SVGProps extends BaseProps, Partial<WidgetJSX.WidgetJSXFrameProps> {
   src: string
 }
 interface BaseProps extends WidgetJSX.WidgetJSXBaseProps {
-  // We have a custom onClick api that returns a promise
   onClick?: (event: WidgetClickEvent) => Promise<any> | void
   key?: string | number
   hoverStyle?: WidgetJSX.HoverStyle
   tooltip?: string
   positioning?: 'auto' | 'absolute'
 }
-
 interface HasChildrenProps {
   children?: FigmaDeclarativeNode | FigmaDeclarativeNode[]
 }
-
-type HexCode = string
+declare type HexCode = string
 declare namespace WidgetJSX {
-  export interface Vector {
+  interface Vector {
     x: number
     y: number
   }
-
-  export interface Color {
+  interface Color {
     r: number
     g: number
     b: number
     a: number
   }
-
-  export type ArcData = {
+  type ArcData = {
     readonly startingAngle: number
     readonly endingAngle: number
     readonly innerRadius: number
   }
-
-  export type AlignItems = 'center' | 'start' | 'end' | 'baseline'
-  export type BlendMode =
+  type AlignItems = 'center' | 'start' | 'end' | 'baseline'
+  type BlendMode =
     | 'normal'
     | 'multiply'
     | 'screen'
@@ -283,55 +236,49 @@ declare namespace WidgetJSX {
     | 'saturation'
     | 'color'
     | 'luminosity'
-
-  export type PaintType =
+  type PaintType =
     | 'image'
     | 'solid'
     | 'gradient-linear'
     | 'gradient-radial'
     | 'gradient-angular'
     | 'gradient-diamond'
-
-  export interface PaintProps {
+  interface PaintProps {
     type: PaintType
     blendMode?: BlendMode
     visible?: boolean
     opacity?: number
   }
-
-  export interface SolidPaint extends PaintProps {
+  interface SolidPaint extends PaintProps {
     type: 'solid'
     color: Color | HexCode
   }
-
-  export interface ColorStop {
+  interface ColorStop {
     position: number
     color: Color
   }
-
-  export interface GradientPaint extends PaintProps {
+  interface GradientPaint extends PaintProps {
     type: 'gradient-linear' | 'gradient-radial' | 'gradient-angular' | 'gradient-diamond'
     gradientHandlePositions: [Vector, Vector, Vector]
     gradientStops: ColorStop[]
   }
-
-  export type Transform = [[number, number, number], [number, number, number]]
-
-  export interface ImagePaint extends PaintProps {
+  type Transform = [[number, number, number], [number, number, number]]
+  interface ImagePaint extends PaintProps {
     type: 'image'
     src: string
-    imageSize?: { width: number; height: number }
+    imageSize?: {
+      width: number
+      height: number
+    }
     scaleMode?: ScaleMode
     imageTransform?: Transform
     scalingFactor?: number
     rotation?: number
     imageRef?: string
   }
-
-  export type Paint = SolidPaint | GradientPaint | ImagePaint
-
-  export type ShadowEffect = DropShadowEffect | InnerShadowEffect
-  export interface DropShadowEffect {
+  type Paint = SolidPaint | GradientPaint | ImagePaint
+  type ShadowEffect = DropShadowEffect | InnerShadowEffect
+  interface DropShadowEffect {
     type: 'drop-shadow'
     color: HexCode | Color
     offset: Vector
@@ -341,8 +288,7 @@ declare namespace WidgetJSX {
     visible?: boolean
     showShadowBehindNode?: boolean
   }
-
-  export interface InnerShadowEffect {
+  interface InnerShadowEffect {
     type: 'inner-shadow'
     color: HexCode | Color
     offset: Vector
@@ -351,70 +297,58 @@ declare namespace WidgetJSX {
     spread?: number
     visible?: boolean
   }
-  export interface BlurEffect {
+  interface BlurEffect {
     type: 'layer-blur' | 'background-blur'
     blur: number
     visible?: boolean
   }
-
-  export type Effect = DropShadowEffect | InnerShadowEffect | BlurEffect
-
-  export type Size = number | 'fill-parent'
-  export type AutolayoutSize = Size | 'hug-contents'
-  export type StrokeAlign = 'inside' | 'outside' | 'center'
-  export type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
-  export type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
-  export type Overflow = 'visible' | 'hidden' | 'scroll'
-
-  export interface TopConstraint {
+  type Effect = DropShadowEffect | InnerShadowEffect | BlurEffect
+  type Size = number | 'fill-parent'
+  type AutolayoutSize = Size | 'hug-contents'
+  type StrokeAlign = 'inside' | 'outside' | 'center'
+  type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
+  type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
+  type Overflow = 'visible' | 'hidden' | 'scroll'
+  interface TopConstraint {
     type: 'top'
     offset: number
   }
-
-  export interface BottomConstraint {
+  interface BottomConstraint {
     type: 'bottom'
     offset: number
   }
-
-  export interface TopBottomConstraint {
+  interface TopBottomConstraint {
     type: 'top-bottom'
     topOffset: number
     bottomOffset: number
   }
-
-  export interface LeftConstraint {
+  interface LeftConstraint {
     type: 'left'
     offset: number
   }
-
-  export interface RightConstraint {
+  interface RightConstraint {
     type: 'right'
     offset: number
   }
-
-  export interface LeftRightConstraint {
+  interface LeftRightConstraint {
     type: 'left-right'
     leftOffset: number
     rightOffset: number
   }
-
-  export interface CenterConstraint {
+  interface CenterConstraint {
     type: 'center'
     offset: number
   }
-
-  export interface HorizontalScaleConstraint {
+  interface HorizontalScaleConstraint {
     type: 'horizontal-scale'
     leftOffsetPercent: number
     rightOffsetPercent: number
   }
-
-  export interface VerticalScaleConstraint {
+  interface VerticalScaleConstraint {
     type: 'vertical-scale'
     topOffsetPercent: number
     bottomOffsetPercent: number
   }
-
   type VerticalConstraint =
     | TopConstraint
     | BottomConstraint
@@ -427,8 +361,7 @@ declare namespace WidgetJSX {
     | LeftRightConstraint
     | CenterConstraint
     | HorizontalScaleConstraint
-
-  export type CornerRadius =
+  type CornerRadius =
     | number
     | {
         topLeft?: number
@@ -436,26 +369,23 @@ declare namespace WidgetJSX {
         bottomLeft?: number
         bottomRight?: number
       }
-
-  export type Path = {
+  type Path = {
     path: string
     windingRule: 'evenodd' | 'nonzero'
   }
-
-  export type FullPadding = {
+  type FullPadding = {
     top?: number
     left?: number
     bottom?: number
     right?: number
   }
-  export type VerticalHorizontalPadding = {
+  type VerticalHorizontalPadding = {
     vertical?: number
     horizontal?: number
   }
-  export type Padding = number | FullPadding | VerticalHorizontalPadding
-
-  export type FontWeightNumerical = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-  export type FontWeightString =
+  type Padding = number | FullPadding | VerticalHorizontalPadding
+  type FontWeightNumerical = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+  type FontWeightString =
     | 'thin'
     | 'extra-light'
     | 'light'
@@ -465,79 +395,62 @@ declare namespace WidgetJSX {
     | 'bold'
     | 'extra-bold'
     | 'black'
-  export type FontWeight = FontWeightNumerical | FontWeightString
-
+  type FontWeight = FontWeightNumerical | FontWeightString
   interface HoverStyle {
     fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
     stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
     opacity?: number
   }
-
-  ///
-  /// MIXINS
-  ///
-  export interface WidgetJSXBaseProps extends BlendProps, ConstraintProps {
+  interface WidgetJSXBaseProps extends BlendProps, ConstraintProps {
     name?: string
     hidden?: boolean
   }
-
-  export interface GeometryProps {
+  interface GeometryProps {
     fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
     stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
     strokeWidth?: number
     strokeAlign?: StrokeAlign
     strokeDashPattern?: number[]
   }
-
-  export interface PathProps {
+  interface PathProps {
     fillPath?: Path[]
     strokePath?: Path[]
   }
-
-  export interface SizePropsRequired {
+  interface SizePropsRequired {
     width: Size
     height: Size
   }
-  export interface SizeProps {
+  interface SizeProps {
     width?: Size
     height?: Size
   }
-
-  export interface AutoLayoutSizeProps {
+  interface AutoLayoutSizeProps {
     width?: AutolayoutSize
     height?: AutolayoutSize
   }
-
-  export interface CornerProps {
+  interface CornerProps {
     cornerRadius?: CornerRadius
   }
-
-  export interface BlendProps {
+  interface BlendProps {
     blendMode?: BlendMode
     opacity?: number
     effect?: Effect | Effect[]
   }
-
-  export interface TransformProps {
+  interface TransformProps {
     rotation?: number
-    // TODO: Add this back when we actually implement this
-    // flipVertical?: boolean
   }
-
-  export interface ConstraintProps {
+  interface ConstraintProps {
     x?: number | HorizontalConstraint
     y?: number | VerticalConstraint
   }
-
-  export interface LayoutProps {
+  interface LayoutProps {
     spacing?: number | 'auto'
     padding?: Padding
     direction?: 'horizontal' | 'vertical'
     horizontalAlignItems?: Omit<AlignItems, 'baseline'>
     verticalAlignItems?: AlignItems
   }
-
-  export interface TextStyleProps extends NoHrefTextStyleProps {
+  interface TextStyleProps extends NoHrefTextStyleProps {
     href?: string
   }
   interface NoHrefTextStyleProps {
@@ -551,12 +464,7 @@ declare namespace WidgetJSX {
     fontPostScriptName?: string
     fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
   }
-
-  ///
-  /// COMPONENTS
-  ///
-
-  export interface WidgetJSXFrameProps
+  interface WidgetJSXFrameProps
     extends BaseProps,
       GeometryProps,
       SizePropsRequired,
@@ -564,50 +472,37 @@ declare namespace WidgetJSX {
       CornerProps {
     overflow?: Overflow
   }
-
-  export interface WidgetJSXAutoLayoutProps
+  interface WidgetJSXAutoLayoutProps
     extends Omit<FrameProps, 'width' | 'height'>,
       LayoutProps,
       AutoLayoutSizeProps {}
-
-  export interface WidgetJSXEllipseProps
-    extends BaseProps,
-      GeometryProps,
-      TransformProps,
-      SizeProps {
+  interface WidgetJSXEllipseProps extends BaseProps, GeometryProps, TransformProps, SizeProps {
     arcData?: ArcData
   }
-
-  export interface WidgetJSXImageProps extends Omit<RectangleProps, 'fill'> {
+  interface WidgetJSXImageProps extends Omit<RectangleProps, 'fill'> {
     src: string | ImagePaint
   }
-
-  export interface WidgetJSXLineProps
+  interface WidgetJSXLineProps
     extends BaseProps,
       TransformProps,
       Pick<GeometryProps, 'stroke' | 'strokeWidth' | 'strokeDashPattern'> {}
-
-  export interface WidgetJSXRectangleProps
+  interface WidgetJSXRectangleProps
     extends BaseProps,
       GeometryProps,
       SizePropsRequired,
       TransformProps,
       CornerProps {}
-
-  export interface WidgetJSXSVGProps
+  interface WidgetJSXSVGProps
     extends BaseProps,
       GeometryProps,
       SizeProps,
       TransformProps,
       PathProps {}
-
-  export interface ParagraphProps {
+  interface ParagraphProps {
     spacing: number
   }
-
-  export interface SpanProps extends TextStyleProps, TextChildren {}
-
-  export interface WidgetJSXTextProps
+  interface SpanProps extends TextStyleProps, TextChildren {}
+  interface WidgetJSXTextProps
     extends BaseProps,
       AutoLayoutSizeProps,
       TransformProps,
@@ -619,6 +514,5 @@ declare namespace WidgetJSX {
     verticalAlignText?: 'top' | 'center' | 'bottom'
     lineHeight?: number | string | 'auto'
   }
-
-  export type ComponentProps = AutoLayoutProps | FrameProps
+  type ComponentProps = AutoLayoutProps | FrameProps
 }
