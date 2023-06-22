@@ -416,13 +416,19 @@ declare namespace WidgetJSX {
     fillPath?: Path[]
     strokePath?: Path[]
   }
-  interface SizePropsRequired {
+  interface SizePropsRequired extends SizeConstraintProps {
     width: Size
     height: Size
   }
-  interface SizeProps {
+  interface SizeProps extends SizeConstraintProps {
     width?: Size
     height?: Size
+  }
+  interface SizeConstraintProps {
+    minWidth?: number
+    maxWidth?: number
+    minHeight?: number
+    maxHeight?: number
   }
   interface AutoLayoutSizeProps {
     width?: AutolayoutSize
@@ -443,12 +449,17 @@ declare namespace WidgetJSX {
     x?: number | HorizontalConstraint
     y?: number | VerticalConstraint
   }
+  interface LayoutGap {
+    horizontal?: number | 'auto'
+    vertical?: number | 'auto'
+  }
   interface LayoutProps {
-    spacing?: number | 'auto'
+    spacing?: number | 'auto' | LayoutGap
     padding?: Padding
     direction?: 'horizontal' | 'vertical'
     horizontalAlignItems?: Omit<AlignItems, 'baseline'>
     verticalAlignItems?: AlignItems
+    wrap?: boolean
   }
   interface TextStyleProps extends NoHrefTextStyleProps {
     href?: string
@@ -513,6 +524,7 @@ declare namespace WidgetJSX {
     horizontalAlignText?: 'left' | 'right' | 'center' | 'justified'
     verticalAlignText?: 'top' | 'center' | 'bottom'
     lineHeight?: number | string | 'auto'
+    truncate?: boolean | number
   }
   type ComponentProps = AutoLayoutProps | FrameProps
 }
