@@ -20,6 +20,7 @@ interface WidgetAPI {
     onAttachmentsChanged?: (e: WidgetAttachedStickablesChangedEvent) => void | Promise<void>,
   ): void
   waitForTask(task: Promise<any>): void
+  colorMapToOptions(colorPalette: ColorPalette): WidgetPropertyMenuColorSelectorOption[]
   AutoLayout: AutoLayout
   Frame: Frame
   Image: ImageComponent
@@ -31,6 +32,9 @@ interface WidgetAPI {
   Line: Line
   Fragment: Fragment
   Span: Span
+}
+interface ColorPalette {
+  [key: string]: string
 }
 interface WidgetClickEvent {
   canvasX: number
