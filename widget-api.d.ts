@@ -33,9 +33,6 @@ interface WidgetAPI {
   Fragment: Fragment
   Span: Span
 }
-interface ColorPalette {
-  [key: string]: string
-}
 interface WidgetClickEvent {
   canvasX: number
   canvasY: number
