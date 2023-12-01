@@ -1,4 +1,3 @@
-// Figma Widget API version 1, update 1
 /// <reference path="./widget-api.d.ts"/>
 declare global {
   // Extend the global widget api
