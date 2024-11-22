@@ -1,4 +1,8 @@
-/* widget-typings are auto-generated. Do not update them directly. See widget-docs/ for instructions. */
+/* widget-typings are auto-generated. Do not update them directly. See plugin-docs/ for instructions. */
+/**
+ * NOTE: This file is useful if you want to import specific types eg.
+ * import type { WidgetJSXFrameProps } from "@figma/widget-typings/widget-api-standalone"
+ */
 interface WidgetAPI {
   register(component: FunctionalWidget<any>): void
   h(...args: any[]): FigmaDeclarativeNode
@@ -531,3 +535,6 @@ declare namespace WidgetJSX {
   }
   type ComponentProps = AutoLayoutProps | FrameProps
 }
+
+// prettier-ignore
+export { WidgetAPI, WidgetClickEvent, WidgetStuckEvent, WidgetAttachedStickablesChangedEvent, SyncedMap, AutoLayout, Frame, Rectangle, ImageComponent, Ellipse, Line, TextComponent, Input, SVG, Fragment, Span, FigmaVirtualNode, FigmaDeclarativeChildren, FigmaDeclarativeNode, FunctionalWidget, PropertyMenuItemType, PropertyMenuItem, WidgetPropertyMenuActionItem, WidgetPropertyMenuSeparatorItem, WidgetPropertyMenuColorSelectorOption, WidgetPropertyMenuColorItem, WidgetPropertyMenuDropdownOption, WidgetPropertyMenuDropdownItem, WidgetPropertyMenuToggleItem, WidgetPropertyMenuLinkItem, WidgetPropertyMenuItem, WidgetPropertyMenu, WidgetPropertyEvent, TextChildren, TextProps, TextEditEvent, PlaceholderProps, InputProps, FragmentProps, FrameProps, AutoLayoutProps, EllipseProps, RectangleProps, ImageProps, LineProps, SVGProps, BaseProps, HasChildrenProps, HexCode, WidgetJSX }
