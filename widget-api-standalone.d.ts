@@ -227,6 +227,7 @@ declare namespace WidgetJSX {
   }
   type AlignItems = 'center' | 'start' | 'end' | 'baseline'
   type BlendMode =
+    | 'pass-through'
     | 'normal'
     | 'multiply'
     | 'screen'
