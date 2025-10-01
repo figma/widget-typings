@@ -1,4 +1,4 @@
-/* widget-typings are auto-generated. Do not update them directly. See plugin-docs/ for instructions. */
+/* widget-typings are auto-generated. Do not update them directly. See developer-docs/ for instructions. */
 /**
  * NOTE: This file is useful if you want to import specific types eg.
  * import type { WidgetJSXFrameProps } from "@figma/widget-typings/widget-api-standalone"
@@ -45,7 +45,7 @@ interface WidgetAPI {
    *
    * :::caution
    *
-   * Note that `figma.getNodeById` shouldn’t be called when rendering a widget (this will throw an error). Instead, this should be used inside event handlers where using the plugin API is allowed. See the [Rendering Code](/how-widgets-run#rendering-code) for more details.
+   * Note that `figma.getNodeById` shouldn’t be called when rendering a widget (this will throw an error). Instead, this should be used inside event handlers where using the plugin API is allowed. See the [Rendering Code](/docs/widgets/how-widgets-run#rendering-code) for more details.
    *
    * :::
    *
@@ -102,7 +102,7 @@ interface WidgetAPI {
    *
    * Whenever a state value is updated, the corresponding widget is re-rendered to reflect the latest "state" of the widget.
    *
-   * Updating state values is not allowed when rendering the widget. See [State Updating Code](/how-widgets-run#state-updating-code) for more information.
+   * Updating state values is not allowed when rendering the widget. See [State Updating Code](/docs/widgets/how-widgets-run#state-updating-code) for more information.
    *
    * ### Usage Example
    *
@@ -157,7 +157,7 @@ interface WidgetAPI {
    * }
    * ```
    *
-   * Besides `useSyncedState`, another way to store data on a widget is `useSyncedMap`. These have different characteristics and use cases. See [Widget State & Multiplayer](/widget-state-and-multiplayer) for more information on when you should use one over the other.
+   * Besides `useSyncedState`, another way to store data on a widget is `useSyncedMap`. These have different characteristics and use cases. See [Widget State & Multiplayer](/docs/widgets/widget-state-and-multiplayer) for more information on when you should use one over the other.
    */
   useSyncedState<T>(
     name: string,
@@ -180,7 +180,7 @@ interface WidgetAPI {
    *
    * :::info
    *
-   * Besides `useSyncedMap`, another way to store data on a widget is `useSyncedState`. These have different characteristics and use cases. See [Widget State & Multiplayer](/widget-state-and-multiplayer) for more information on when you should use one over the other.
+   * Besides `useSyncedMap`, another way to store data on a widget is `useSyncedState`. These have different characteristics and use cases. See [Widget State & Multiplayer](/docs/widgets/widget-state-and-multiplayer) for more information on when you should use one over the other.
    *
    * :::
    *
@@ -308,7 +308,7 @@ interface WidgetAPI {
    *
    * :::info
    *
-   * Note: Because of [How Widgets Run](/how-widgets-run), this function should handle being called multiple times with the same state.
+   * Note: Because of [How Widgets Run](/docs/widgets/how-widgets-run), this function should handle being called multiple times with the same state.
    *
    * :::
    *
@@ -318,7 +318,7 @@ interface WidgetAPI {
    *
    * **Initializing network or plugin API-dependent widget state**
    *
-   * [Rendering code](/how-widgets-run#rendering-code) is synchronous and should only depend on widget state - if you wish to initialize widget state using information from the network (eg. HTTP requests in an iframe) or using information about the file (eg. using `figma.currentPage.selection`) - you can do this in `useEffect`. After the widget has rendered for the first time, any callback to `useEffect` is executed. Code in the function passed to `useEffect` is able to update widget state and perform asynchronous tasks (when paired with `waitForTask`).
+   * [Rendering code](/docs/widgets/how-widgets-run#rendering-code) is synchronous and should only depend on widget state - if you wish to initialize widget state using information from the network (eg. HTTP requests in an iframe) or using information about the file (eg. using `figma.currentPage.selection`) - you can do this in `useEffect`. After the widget has rendered for the first time, any callback to `useEffect` is executed. Code in the function passed to `useEffect` is able to update widget state and perform asynchronous tasks (when paired with `waitForTask`).
    *
    * **Setting up event handlers**
    *
@@ -345,7 +345,7 @@ interface WidgetAPI {
    * ```
    *
    * :::info
-   *  Note: `useEffect` is called **every time** a widget's state is changed. This means that if you are setting up an event listener using [`figma.on`](https://www.figma.com/plugin-docs/api/properties/figma-on/) (or [`figma.ui.on`](https://www.figma.com/plugin-docs/api/properties/figma-ui-on)), you need to make sure to remove the listener using the corresponding `off` function in the function returned by your `useEffect` callback. Not removing an event listener can lead to unexpected behavior where your code responds to an event multiple times.
+   *  Note: `useEffect` is called **every time** a widget's state is changed. This means that if you are setting up an event listener using [`figma.on`](/docs/plugins/api/properties/figma-on/) (or [`figma.ui.on`](/docs/plugins/api/properties/figma-ui-on)), you need to make sure to remove the listener using the corresponding `off` function in the function returned by your `useEffect` callback. Not removing an event listener can lead to unexpected behavior where your code responds to an event multiple times.
    * :::
    *
    * Here's an example of how to use `useEffect` to set up an event handler and
@@ -416,7 +416,7 @@ interface WidgetAPI {
    * @param
    * | Parameter             | Description |
    * | --------------------- | ----------- |
-   * |`onStuckStatusChanged` |  An optional callback that is called whenever a widget is stuck or removed from a node. It takes a **[`WidgetStuckEvent`](/api/type-WidgetStuckEvent)** as an argument. |
+   * |`onStuckStatusChanged` |  An optional callback that is called whenever a widget is stuck or removed from a node. It takes a **[`WidgetStuckEvent`](/docs/widgets/api/type-WidgetStuckEvent)** as an argument. |
    *
    *
    * @remarks
@@ -433,7 +433,7 @@ interface WidgetAPI {
    * figma.widget.register(Widget);
    * ```
    *
-   * ![Gif of widget sticking to a sticky note](/img/stick.gif)
+   * ![Gif of widget sticking to a sticky note](/img/widgets/stick.gif)
    *
    *
    * ### Example
@@ -497,7 +497,7 @@ interface WidgetAPI {
    *
    * | Parameter             | Description |
    * | --------------------- | ----------- |
-   * |`onAttachedStickablesChanged` |  An optional callback that is called whenever stickables are added or removed from this widget. It takes a **[`WidgetAttachedStickablesChangedEvent`](/api/type-WidgetAttachedStickablesChangedEvent)** as an argument. |
+   * |`onAttachedStickablesChanged` |  An optional callback that is called whenever stickables are added or removed from this widget. It takes a **[`WidgetAttachedStickablesChangedEvent`](/docs/widgets/api/type-WidgetAttachedStickablesChangedEvent)** as an argument. |
    *
    * @remarks
    *
@@ -607,7 +607,7 @@ interface WidgetAPI {
    * This API is only available in FigJam
    *
    * :::
-   *  The `colorMapToOptions` takes in a [ColorPalette](https://www.figma.com/plugin-docs/api/ColorPalette), a map from color names to values, and returns `WidgetPropertyMenuColorSelectorOption[]`. This helper function enables developers to use `figma.constants.colors.*`, official FigJam color palettes, in the `PropertyMenu`.
+   *  The `colorMapToOptions` takes in a [ColorPalette](/docs/plugins/api/ColorPalette), a map from color names to values, and returns `WidgetPropertyMenuColorSelectorOption[]`. This helper function enables developers to use `figma.constants.colors.*`, official FigJam color palettes, in the `PropertyMenu`.
    *
    *
    * @remarks
@@ -770,47 +770,47 @@ interface SyncedMap<T> {
 /**
  * @pageId component-AutoLayout
  */
-declare type AutoLayout = FunctionalWidget<AutoLayoutProps>
+type AutoLayout = FunctionalWidget<AutoLayoutProps>
 /**
  * @pageId component-Frame
  */
-declare type Frame = FunctionalWidget<FrameProps>
+type Frame = FunctionalWidget<FrameProps>
 /**
  * @pageId component-Rectangle
  */
-declare type Rectangle = FunctionalWidget<RectangleProps>
+type Rectangle = FunctionalWidget<RectangleProps>
 /**
  * @pageId component-Image
  */
-declare type ImageComponent = FunctionalWidget<ImageProps>
+type ImageComponent = FunctionalWidget<ImageProps>
 /**
  * @pageId component-Ellipse
  */
-declare type Ellipse = FunctionalWidget<EllipseProps>
+type Ellipse = FunctionalWidget<EllipseProps>
 /**
  * @pageId component-Line
  */
-declare type Line = FunctionalWidget<LineProps>
+type Line = FunctionalWidget<LineProps>
 /**
  * @pageId component-Text
  */
-declare type TextComponent = FunctionalWidget<TextProps>
+type TextComponent = FunctionalWidget<TextProps>
 /**
  * @pageId component-Input
  */
-declare type Input = FunctionalWidget<InputProps>
+type Input = FunctionalWidget<InputProps>
 /**
  * @pageId component-SVG
  */
-declare type SVG = FunctionalWidget<SVGProps>
+type SVG = FunctionalWidget<SVGProps>
 /**
  * @pageId component-Fragment
  */
-declare type Fragment = FunctionalWidget<FragmentProps>
+type Fragment = FunctionalWidget<FragmentProps>
 /**
  * @pageId component-Span
  */
-declare type Span = (props: WidgetJSX.SpanProps) => FigmaVirtualNode<'span'>
+type Span = (props: WidgetJSX.SpanProps) => FigmaVirtualNode<'span'>
 declare type FigmaVirtualNode<T> = {
   __type: T
 }
@@ -825,11 +825,11 @@ declare type FigmaDeclarativeNode = FigmaDeclarativeChildren<any>
 /**
  * @pageId N/A
  */
-declare type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
+type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
 /**
  * @pageId type-PropertyMenu
  */
-declare type PropertyMenuItemType =
+type PropertyMenuItemType =
   | 'action'
   | 'separator'
   | 'color-selector'
@@ -1025,7 +1025,7 @@ interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
 /**
  * @pageId type-PropertyMenu
  */
-declare type WidgetPropertyMenuItem =
+type WidgetPropertyMenuItem =
   | WidgetPropertyMenuActionItem
   | WidgetPropertyMenuSeparatorItem
   | WidgetPropertyMenuColorItem
@@ -1035,7 +1035,7 @@ declare type WidgetPropertyMenuItem =
 /**
  * @pageId type-PropertyMenu
  */
-declare type WidgetPropertyMenu = WidgetPropertyMenuItem[]
+type WidgetPropertyMenu = WidgetPropertyMenuItem[]
 /**
  * @pageId type-PropertyMenu
  */
@@ -1141,7 +1141,7 @@ interface LineProps extends BaseProps, WidgetJSX.WidgetJSXLineProps {
 }
 interface SVGProps extends BaseProps, Partial<WidgetJSX.WidgetJSXFrameProps> {
   /**
-   * An svg string of the form "<svg .... />"
+   * A svg string of the form `<svg .... />`
    */
   src: string
 }
@@ -1151,9 +1151,9 @@ interface SVGProps extends BaseProps, Partial<WidgetJSX.WidgetJSXFrameProps> {
 interface BaseProps extends WidgetJSX.WidgetJSXBaseProps {
   /**
    * Attach a click handler on the given node. If the given function is async or returns a promise, the widget is only terminated when the async function has completed and the promise has been resolved.
-   * The click handler is also passed a [`WidgetClickEvent`](/api/type-WidgetClickEvent) object that contains additional information about the click.
+   * The click handler is also passed a [`WidgetClickEvent`](/docs/widgets/api/type-WidgetClickEvent) object that contains additional information about the click.
    *
-   * See also: [Handling User Events](/handling-user-events).
+   * See also: [Handling User Events](/docs/widgets/handling-user-events).
    */
   onClick?: (event: WidgetClickEvent) => Promise<any> | void
   /**
@@ -1187,7 +1187,7 @@ interface HasChildrenProps {
 /**
  * @pageId N/A
  */
-declare type HexCode = string
+type HexCode = string
 /**
  * @pageId N/A
  */
