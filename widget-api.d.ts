@@ -1,6 +1,6 @@
 /* widget-typings are auto-generated. Do not update them directly. See developer-docs/ for instructions. */
 /**
- * @see https://developers.figma.com/docs/plugins/api/widget
+ * @see https://developers.figma.com/docs/widgets/api/api-reference
  */
 interface WidgetAPI {
   /**
@@ -628,7 +628,7 @@ interface WidgetAPI {
   Span: Span
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-WidgetClickEvent
+ * @see https://developers.figma.com/docs/widgets/api/type-WidgetClickEvent
  */
 interface WidgetClickEvent {
   /**
@@ -653,7 +653,7 @@ interface WidgetClickEvent {
   offsetY: number
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-WidgetStuckEvent
+ * @see https://developers.figma.com/docs/widgets/api/type-WidgetStuckEvent
  */
 interface WidgetStuckEvent {
   /**
@@ -668,7 +668,7 @@ interface WidgetStuckEvent {
   oldHostId: string | null
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-WidgetAttachedStickablesChangedEvent
+ * @see https://developers.figma.com/docs/widgets/api/type-WidgetAttachedStickablesChangedEvent
  */
 interface WidgetAttachedStickablesChangedEvent {
   /**
@@ -682,7 +682,7 @@ interface WidgetAttachedStickablesChangedEvent {
   unstuckNodeIds: string[]
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-SyncedMap
+ * @see https://developers.figma.com/docs/widgets/api/type-SyncedMap
  */
 interface SyncedMap<T> {
   /**
@@ -726,47 +726,47 @@ interface SyncedMap<T> {
   entries(): [string, T][]
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-AutoLayout
+ * @see https://developers.figma.com/docs/widgets/api/component-AutoLayout
  */
 type AutoLayout = FunctionalWidget<AutoLayoutProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Frame
+ * @see https://developers.figma.com/docs/widgets/api/component-Frame
  */
 type Frame = FunctionalWidget<FrameProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Rectangle
+ * @see https://developers.figma.com/docs/widgets/api/component-Rectangle
  */
 type Rectangle = FunctionalWidget<RectangleProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Image
+ * @see https://developers.figma.com/docs/widgets/api/component-Image
  */
 type ImageComponent = FunctionalWidget<ImageProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Ellipse
+ * @see https://developers.figma.com/docs/widgets/api/component-Ellipse
  */
 type Ellipse = FunctionalWidget<EllipseProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Line
+ * @see https://developers.figma.com/docs/widgets/api/component-Line
  */
 type Line = FunctionalWidget<LineProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Text
+ * @see https://developers.figma.com/docs/widgets/api/component-Text
  */
 type TextComponent = FunctionalWidget<TextProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Input
+ * @see https://developers.figma.com/docs/widgets/api/component-Input
  */
 type Input = FunctionalWidget<InputProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-SVG
+ * @see https://developers.figma.com/docs/widgets/api/component-SVG
  */
 type SVG = FunctionalWidget<SVGProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Fragment
+ * @see https://developers.figma.com/docs/widgets/api/component-Fragment
  */
 type Fragment = FunctionalWidget<FragmentProps>
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-Span
+ * @see https://developers.figma.com/docs/widgets/api/component-Span
  */
 type Span = (props: WidgetJSX.SpanProps) => FigmaVirtualNode<'span'>
 declare type FigmaVirtualNode<T> = {
@@ -780,12 +780,10 @@ declare type FigmaDeclarativeChildren<T> =
   | undefined
   | false
 declare type FigmaDeclarativeNode = FigmaDeclarativeChildren<any>
-/**
- * @see https://developers.figma.com/docs/plugins/api/N/A
- */
+
 type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 type PropertyMenuItemType =
   | 'action'
@@ -800,7 +798,7 @@ interface PropertyMenuItem {
   itemType: PropertyMenuItemType
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuActionItem extends PropertyMenuItem {
   /**
@@ -825,7 +823,7 @@ interface WidgetPropertyMenuActionItem extends PropertyMenuItem {
   icon?: string
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuSeparatorItem {
   /**
@@ -833,9 +831,7 @@ interface WidgetPropertyMenuSeparatorItem {
    */
   itemType: 'separator'
 }
-/**
- * @see https://developers.figma.com/docs/plugins/api/N/A
- */
+
 interface WidgetPropertyMenuColorSelectorOption {
   /**
    * The tooltip of the selector option.
@@ -848,7 +844,7 @@ interface WidgetPropertyMenuColorSelectorOption {
   option: HexCode
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuColorItem extends PropertyMenuItem {
   /**
@@ -872,9 +868,7 @@ interface WidgetPropertyMenuColorItem extends PropertyMenuItem {
    */
   selectedOption: string
 }
-/**
- * @see https://developers.figma.com/docs/plugins/api/N/A
- */
+
 interface WidgetPropertyMenuDropdownOption {
   /**
    * Value of the dropdown option. If selected, will correspond to `propertyValue` pass to the property menu callback.
@@ -886,7 +880,7 @@ interface WidgetPropertyMenuDropdownOption {
   label: string
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
   /**
@@ -937,7 +931,7 @@ interface WidgetPropertyMenuToggleItem extends PropertyMenuItem {
   icon?: string
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
   /**
@@ -969,7 +963,7 @@ interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
   icon?: string | null
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 type WidgetPropertyMenuItem =
   | WidgetPropertyMenuActionItem
@@ -979,11 +973,11 @@ type WidgetPropertyMenuItem =
   | WidgetPropertyMenuToggleItem
   | WidgetPropertyMenuLinkItem
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 type WidgetPropertyMenu = WidgetPropertyMenuItem[]
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyEvent {
   /**
@@ -1009,7 +1003,7 @@ interface TextProps extends BaseProps, WidgetJSX.WidgetJSXTextProps, TextChildre
   }
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-TextEditEvent
+ * @see https://developers.figma.com/docs/widgets/api/type-TextEditEvent
  */
 interface TextEditEvent {
   /**
@@ -1018,7 +1012,7 @@ interface TextEditEvent {
   characters: string
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/type-PlaceholderProps
+ * @see https://developers.figma.com/docs/widgets/api/type-PlaceholderProps
  */
 interface PlaceholderProps extends WidgetJSX.BlendProps, Omit<WidgetJSX.TextStyleProps, 'href'> {}
 interface InputProps extends Omit<TextProps, 'children' | 'width'> {
@@ -1069,7 +1063,7 @@ interface FragmentProps extends HasChildrenProps {
 }
 interface FrameProps extends BaseProps, WidgetJSX.WidgetJSXFrameProps, HasChildrenProps {}
 /**
- * @see https://developers.figma.com/docs/plugins/api/component-AutoLayout
+ * @see https://developers.figma.com/docs/widgets/api/component-AutoLayout
  **/
 interface AutoLayoutProps extends BaseProps, WidgetJSX.WidgetJSXAutoLayoutProps, HasChildrenProps {}
 interface EllipseProps extends BaseProps, WidgetJSX.WidgetJSXEllipseProps {}
@@ -1092,7 +1086,7 @@ interface SVGProps extends BaseProps, Partial<WidgetJSX.WidgetJSXFrameProps> {
   src: string
 }
 /**
- * @see https://developers.figma.com/docs/plugins/api/components
+ * @see https://developers.figma.com/docs/widgets/api/components
  */
 interface BaseProps extends WidgetJSX.WidgetJSXBaseProps {
   /**
@@ -1130,20 +1124,16 @@ interface HasChildrenProps {
    */
   children?: FigmaDeclarativeNode | FigmaDeclarativeNode[]
 }
-/**
- * @see https://developers.figma.com/docs/plugins/api/N/A
- */
+
 type HexCode = string
-/**
- * @see https://developers.figma.com/docs/plugins/api/N/A
- */
+
 declare namespace WidgetJSX {
   interface Vector {
     x: number
     y: number
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Color
+   * @see https://developers.figma.com/docs/widgets/api/type-Color
    */
   interface Color {
     r: number
@@ -1152,7 +1142,7 @@ declare namespace WidgetJSX {
     a: number
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-ArcData
+   * @see https://developers.figma.com/docs/widgets/api/type-ArcData
    */
   type ArcData = {
     readonly startingAngle: number
@@ -1160,11 +1150,11 @@ declare namespace WidgetJSX {
     readonly innerRadius: number
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-AlignItems
+   * @see https://developers.figma.com/docs/widgets/api/type-AlignItems
    */
   type AlignItems = 'center' | 'start' | 'end' | 'baseline'
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-BlendMode
+   * @see https://developers.figma.com/docs/widgets/api/type-BlendMode
    */
   type BlendMode =
     | 'pass-through'
@@ -1185,7 +1175,7 @@ declare namespace WidgetJSX {
     | 'color'
     | 'luminosity'
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Paint
+   * @see https://developers.figma.com/docs/widgets/api/type-Paint
    */
   type PaintType =
     | 'image'
@@ -1195,7 +1185,7 @@ declare namespace WidgetJSX {
     | 'gradient-angular'
     | 'gradient-diamond'
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-PaintType
+   * @see https://developers.figma.com/docs/widgets/api/type-PaintType
    */
   interface PaintProps {
     /**
@@ -1216,7 +1206,7 @@ declare namespace WidgetJSX {
     opacity?: number
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-SolidPaint
+   * @see https://developers.figma.com/docs/widgets/api/type-SolidPaint
    */
   interface SolidPaint extends PaintProps {
     /**
@@ -1228,15 +1218,13 @@ declare namespace WidgetJSX {
      */
     color: Color | HexCode
   }
-  /**
-   * @see https://developers.figma.com/docs/plugins/api/N/A
-   */
+  
   interface ColorStop {
     position: number
     color: Color
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-GradientPaint
+   * @see https://developers.figma.com/docs/widgets/api/type-GradientPaint
    */
   interface GradientPaint extends PaintProps {
     /**
@@ -1258,11 +1246,11 @@ declare namespace WidgetJSX {
     gradientStops: ColorStop[]
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Transform
+   * @see https://developers.figma.com/docs/widgets/api/type-Transform
    */
   type Transform = [[number, number, number], [number, number, number]]
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-ImagePaint
+   * @see https://developers.figma.com/docs/widgets/api/type-ImagePaint
    */
   interface ImagePaint extends PaintProps {
     /**
@@ -1299,12 +1287,12 @@ declare namespace WidgetJSX {
     imageRef?: string
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Paint
+   * @see https://developers.figma.com/docs/widgets/api/type-Paint
    */
   type Paint = SolidPaint | GradientPaint | ImagePaint
   type ShadowEffect = DropShadowEffect | InnerShadowEffect
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Effect
+   * @see https://developers.figma.com/docs/widgets/api/type-Effect
    */
   interface DropShadowEffect {
     /**
@@ -1371,7 +1359,7 @@ declare namespace WidgetJSX {
     visible?: boolean
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Effect
+   * @see https://developers.figma.com/docs/widgets/api/type-Effect
    */
   interface BlurEffect {
     /**
@@ -1388,32 +1376,28 @@ declare namespace WidgetJSX {
     visible?: boolean
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Effect
+   * @see https://developers.figma.com/docs/widgets/api/type-Effect
    */
   type Effect = DropShadowEffect | InnerShadowEffect | BlurEffect
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Size
+   * @see https://developers.figma.com/docs/widgets/api/type-Size
    */
   type Size = number | 'fill-parent'
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Size
+   * @see https://developers.figma.com/docs/widgets/api/type-Size
    */
   type AutolayoutSize = Size | 'hug-contents'
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-StrokeAlign
+   * @see https://developers.figma.com/docs/widgets/api/type-StrokeAlign
    */
   type StrokeAlign = 'inside' | 'outside' | 'center'
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-StrokeCap
+   * @see https://developers.figma.com/docs/widgets/api/type-StrokeCap
    */
   type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
-  /**
-   * @see https://developers.figma.com/docs/plugins/api/N/A
-   */
+  
   type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
-  /**
-   * @see https://developers.figma.com/docs/plugins/api/N/A
-   */
+  
   type Overflow = 'visible' | 'hidden' | 'scroll'
   interface TopConstraint {
     type: 'top'
@@ -1456,7 +1440,7 @@ declare namespace WidgetJSX {
     bottomOffsetPercent: number
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Constraint
+   * @see https://developers.figma.com/docs/widgets/api/type-Constraint
    */
   type VerticalConstraint =
     | TopConstraint
@@ -1465,7 +1449,7 @@ declare namespace WidgetJSX {
     | CenterConstraint
     | VerticalScaleConstraint
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Constraint
+   * @see https://developers.figma.com/docs/widgets/api/type-Constraint
    */
   type HorizontalConstraint =
     | LeftConstraint
@@ -1474,7 +1458,7 @@ declare namespace WidgetJSX {
     | CenterConstraint
     | HorizontalScaleConstraint
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-CornerRadius
+   * @see https://developers.figma.com/docs/widgets/api/type-CornerRadius
    */
   type CornerRadius =
     | number
@@ -1485,7 +1469,7 @@ declare namespace WidgetJSX {
         bottomRight?: number
       }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Path
+   * @see https://developers.figma.com/docs/widgets/api/type-Path
    */
   type Path = {
     path: string
@@ -1502,15 +1486,15 @@ declare namespace WidgetJSX {
     horizontal?: number
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-Padding
+   * @see https://developers.figma.com/docs/widgets/api/type-Padding
    */
   type Padding = number | FullPadding | VerticalHorizontalPadding
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-FontWeight
+   * @see https://developers.figma.com/docs/widgets/api/type-FontWeight
    */
   type FontWeightNumerical = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-FontWeight
+   * @see https://developers.figma.com/docs/widgets/api/type-FontWeight
    */
   type FontWeightString =
     | 'thin'
@@ -1523,20 +1507,17 @@ declare namespace WidgetJSX {
     | 'extra-bold'
     | 'black'
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-FontWeight
+   * @see https://developers.figma.com/docs/widgets/api/type-FontWeight
    */
   type FontWeight = FontWeightNumerical | FontWeightString
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-HoverStyle
+   * @see https://developers.figma.com/docs/widgets/api/type-HoverStyle
    */
   interface HoverStyle {
     fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
     stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
     opacity?: number
   }
-  /**
-   * @see https://developers.figma.com/docs/plugins/api/interface-BaseProps
-   */
   interface WidgetJSXBaseProps extends BlendProps, ConstraintProps {
     /**
      * The name of the component. This is useful to specify a data-layer attribute to make things more debuggable when you inspect the sublayers of your widget.
@@ -1635,9 +1616,6 @@ declare namespace WidgetJSX {
      */
     cornerRadius?: CornerRadius
   }
-  /**
-   * @see https://developers.figma.com/docs/plugins/api/interface-BlendProps
-   */
   interface BlendProps {
     /**
      * The blendMode of the component.
@@ -1675,7 +1653,7 @@ declare namespace WidgetJSX {
     y?: number | VerticalConstraint
   }
   /**
-   * @see https://developers.figma.com/docs/plugins/api/type-LayoutGap
+   * @see https://developers.figma.com/docs/widgets/api/type-LayoutGap
    */
   interface LayoutGap {
     /**
