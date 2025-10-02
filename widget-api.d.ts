@@ -1,6 +1,6 @@
-/* widget-typings are auto-generated. Do not update them directly. See widget-docs/ for instructions. */
+/* widget-typings are auto-generated. Do not update them directly. See developer-docs/ for instructions. */
 /**
- * @pageId widget
+ * @see https://developers.figma.com/docs/widgets/api/api-reference
  */
 interface WidgetAPI {
   /**
@@ -13,11 +13,7 @@ interface WidgetAPI {
    *
    * The provided function will be called any time a widget is inserted and anytime the widget’s state is updated.
    *
-   * :::caution
-   *
-   * The `widget.register` function should only be called once when the `manifest.main` file runs.
-   *
-   * :::
+   * Caution: The `widget.register` function should only be called once when the `manifest.main` file runs.
    *
    * ### Usage Example
    *
@@ -39,11 +35,7 @@ interface WidgetAPI {
    *
    * @remarks
    *
-   * :::caution
-   *
-   * Note that `figma.getNodeById` shouldn’t be called when rendering a widget (this will throw an error). Instead, this should be used inside event handlers where using the plugin API is allowed. See the [Rendering Code](/how-widgets-run#rendering-code) for more details.
-   *
-   * :::
+   * Caution: Note that `figma.getNodeById` shouldn’t be called when rendering a widget (this will throw an error). Instead, this should be used inside event handlers where using the plugin API is allowed. See the [Rendering Code](https://developers.figma.com/docs/widgets/how-widgets-run#rendering-code) for more details.
    *
    * ### Usage Example
    *
@@ -90,15 +82,11 @@ interface WidgetAPI {
    *
    * @remarks
    *
-   * :::info
-   *
-   * If you're familiar with React, `useSyncedState` is very similar to `React.useState`. The main difference being that we require you to explicitly "key" your state values to explicitly manage the namespace of your widget state. This is important for widgets because syncedState lives across different clients who might be running different versions of your widget.
-   *
-   * :::
+   * Note: If you're familiar with React, `useSyncedState` is very similar to `React.useState`. The main difference being that we require you to explicitly "key" your state values to explicitly manage the namespace of your widget state. This is important for widgets because syncedState lives across different clients who might be running different versions of your widget.
    *
    * Whenever a state value is updated, the corresponding widget is re-rendered to reflect the latest "state" of the widget.
    *
-   * Updating state values is not allowed when rendering the widget. See [State Updating Code](/how-widgets-run#state-updating-code) for more information.
+   * Updating state values is not allowed when rendering the widget. See [State Updating Code](https://developers.figma.com/docs/widgets/how-widgets-run#state-updating-code) for more information.
    *
    * ### Usage Example
    *
@@ -153,7 +141,7 @@ interface WidgetAPI {
    * }
    * ```
    *
-   * Besides `useSyncedState`, another way to store data on a widget is `useSyncedMap`. These have different characteristics and use cases. See [Widget State & Multiplayer](/widget-state-and-multiplayer) for more information on when you should use one over the other.
+   * Besides `useSyncedState`, another way to store data on a widget is `useSyncedMap`. These have different characteristics and use cases. See [Widget State & Multiplayer](https://developers.figma.com/docs/widgets/widget-state-and-multiplayer) for more information on when you should use one over the other.
    */
   useSyncedState<T>(
     name: string,
@@ -174,11 +162,7 @@ interface WidgetAPI {
    *
    * The return value of `useSyncedMap` is a `Map` like JavaScript object that implements methods like `get`, `set`, `delete`, `keys()` etc.
    *
-   * :::info
-   *
-   * Besides `useSyncedMap`, another way to store data on a widget is `useSyncedState`. These have different characteristics and use cases. See [Widget State & Multiplayer](/widget-state-and-multiplayer) for more information on when you should use one over the other.
-   *
-   * :::
+   * Note: Besides `useSyncedMap`, another way to store data on a widget is `useSyncedState`. These have different characteristics and use cases. See [Widget State & Multiplayer](https://developers.figma.com/docs/widgets/widget-state-and-multiplayer) for more information on when you should use one over the other.
    *
    * ### Usage Example
    *
@@ -302,11 +286,7 @@ interface WidgetAPI {
    * | ------------ | ----------- |
    * |`effect`      |  A function that is executed whenever a widget's state is updated. If a function is returned by this function, the returned function will be called prior to running effects again. |
    *
-   * :::info
-   *
-   * Note: Because of [How Widgets Run](/how-widgets-run), this function should handle being called multiple times with the same state.
-   *
-   * :::
+   * Note: Note: Because of [How Widgets Run](https://developers.figma.com/docs/widgets/how-widgets-run), this function should handle being called multiple times with the same state.
    *
    * @remarks
    *
@@ -314,7 +294,7 @@ interface WidgetAPI {
    *
    * **Initializing network or plugin API-dependent widget state**
    *
-   * [Rendering code](/how-widgets-run#rendering-code) is synchronous and should only depend on widget state - if you wish to initialize widget state using information from the network (eg. HTTP requests in an iframe) or using information about the file (eg. using `figma.currentPage.selection`) - you can do this in `useEffect`. After the widget has rendered for the first time, any callback to `useEffect` is executed. Code in the function passed to `useEffect` is able to update widget state and perform asynchronous tasks (when paired with `waitForTask`).
+   * [Rendering code](https://developers.figma.com/docs/widgets/how-widgets-run#rendering-code) is synchronous and should only depend on widget state - if you wish to initialize widget state using information from the network (eg. HTTP requests in an iframe) or using information about the file (eg. using `figma.currentPage.selection`) - you can do this in `useEffect`. After the widget has rendered for the first time, any callback to `useEffect` is executed. Code in the function passed to `useEffect` is able to update widget state and perform asynchronous tasks (when paired with `waitForTask`).
    *
    * **Setting up event handlers**
    *
@@ -340,9 +320,7 @@ interface WidgetAPI {
    * widget.register(EventHandlerExample)
    * ```
    *
-   * :::info
-   *  Note: `useEffect` is called **every time** a widget's state is changed. This means that if you are setting up an event listener using [`figma.on`](https://www.figma.com/plugin-docs/api/properties/figma-on/) (or [`figma.ui.on`](https://www.figma.com/plugin-docs/api/properties/figma-ui-on)), you need to make sure to remove the listener using the corresponding `off` function in the function returned by your `useEffect` callback. Not removing an event listener can lead to unexpected behavior where your code responds to an event multiple times.
-   * :::
+   * Note:  Note: `useEffect` is called **every time** a widget's state is changed. This means that if you are setting up an event listener using [`figma.on`](https://developers.figma.com/docs/plugins/api/properties/figma-on/) (or [`figma.ui.on`](https://developers.figma.com/docs/plugins/api/properties/figma-ui-on)), you need to make sure to remove the listener using the corresponding `off` function in the function returned by your `useEffect` callback. Not removing an event listener can lead to unexpected behavior where your code responds to an event multiple times.
    *
    * Here's an example of how to use `useEffect` to set up an event handler and
    * clean it up when the widget is unmounted. In this example, we're using
@@ -401,18 +379,14 @@ interface WidgetAPI {
    */
   useEffect(effect: () => (() => void) | void): void
   /**
-   * :::info
-   *
-   * This API is only available in FigJam
-   *
-   * :::
+   * Note: This API is only available in FigJam
    *
    * `useStickable` is a hook that makes your widget stick to other nodes when dragged over them. This behavior is similar to how stamp nodes work in Figma.
    *
    * @param
    * | Parameter             | Description |
    * | --------------------- | ----------- |
-   * |`onStuckStatusChanged` |  An optional callback that is called whenever a widget is stuck or removed from a node. It takes a **[`WidgetStuckEvent`](/api/type-WidgetStuckEvent)** as an argument. |
+   * |`onStuckStatusChanged` |  An optional callback that is called whenever a widget is stuck or removed from a node. It takes a **[`WidgetStuckEvent`](https://developers.figma.com/docs/widgets/api/type-WidgetStuckEvent)** as an argument. |
    *
    *
    * @remarks
@@ -429,7 +403,7 @@ interface WidgetAPI {
    * figma.widget.register(Widget);
    * ```
    *
-   * ![Gif of widget sticking to a sticky note](/img/stick.gif)
+   * ![Gif of widget sticking to a sticky note](https://developers.figma.com/img/widgets/stick.gif)
    *
    *
    * ### Example
@@ -481,11 +455,7 @@ interface WidgetAPI {
    */
   useStickable(onStuckStatusChanged?: (e: WidgetStuckEvent) => void | Promise<void>): void
   /**
-   * :::info
-   *
-   * This API is only available in FigJam
-   *
-   * :::
+   * Note: This API is only available in FigJam
    *
    * `useStickableHost` lets your widget run a callback when a stickable is added or removed to your widget. By default all widgets are already stickable hosts so you don't have to call this if you just want stamps to stick to your widget.
    *
@@ -493,7 +463,7 @@ interface WidgetAPI {
    *
    * | Parameter             | Description |
    * | --------------------- | ----------- |
-   * |`onAttachedStickablesChanged` |  An optional callback that is called whenever stickables are added or removed from this widget. It takes a **[`WidgetAttachedStickablesChangedEvent`](/api/type-WidgetAttachedStickablesChangedEvent)** as an argument. |
+   * |`onAttachedStickablesChanged` |  An optional callback that is called whenever stickables are added or removed from this widget. It takes a **[`WidgetAttachedStickablesChangedEvent`](https://developers.figma.com/docs/widgets/api/type-WidgetAttachedStickablesChangedEvent)** as an argument. |
    *
    * @remarks
    *
@@ -598,12 +568,8 @@ interface WidgetAPI {
    */
   waitForTask(task: Promise<any>): void
   /**
-   * :::info
-   *
-   * This API is only available in FigJam
-   *
-   * :::
-   *  The `colorMapToOptions` takes in a [ColorPalette](https://www.figma.com/plugin-docs/api/ColorPalette), a map from color names to values, and returns `WidgetPropertyMenuColorSelectorOption[]`. This helper function enables developers to use `figma.constants.colors.*`, official FigJam color palettes, in the `PropertyMenu`.
+   * Note: This API is only available in FigJam
+   *  The `colorMapToOptions` takes in a [ColorPalette](https://developers.figma.com/docs/plugins/api/ColorPalette), a map from color names to values, and returns `WidgetPropertyMenuColorSelectorOption[]`. This helper function enables developers to use `figma.constants.colors.*`, official FigJam color palettes, in the `PropertyMenu`.
    *
    *
    * @remarks
@@ -662,7 +628,7 @@ interface WidgetAPI {
   Span: Span
 }
 /**
- * @pageId type-WidgetClickEvent
+ * @see https://developers.figma.com/docs/widgets/api/type-WidgetClickEvent
  */
 interface WidgetClickEvent {
   /**
@@ -687,7 +653,7 @@ interface WidgetClickEvent {
   offsetY: number
 }
 /**
- * @pageId type-WidgetStuckEvent
+ * @see https://developers.figma.com/docs/widgets/api/type-WidgetStuckEvent
  */
 interface WidgetStuckEvent {
   /**
@@ -702,7 +668,7 @@ interface WidgetStuckEvent {
   oldHostId: string | null
 }
 /**
- * @pageId type-WidgetAttachedStickablesChangedEvent
+ * @see https://developers.figma.com/docs/widgets/api/type-WidgetAttachedStickablesChangedEvent
  */
 interface WidgetAttachedStickablesChangedEvent {
   /**
@@ -716,7 +682,7 @@ interface WidgetAttachedStickablesChangedEvent {
   unstuckNodeIds: string[]
 }
 /**
- * @pageId type-SyncedMap
+ * @see https://developers.figma.com/docs/widgets/api/type-SyncedMap
  */
 interface SyncedMap<T> {
   /**
@@ -739,11 +705,7 @@ interface SyncedMap<T> {
   /**
    * Persist the given key/value pair on the map.
    *
-   * :::info
-   *
-   * Note: value has to be JSON-serializable.
-   *
-   * :::
+   * Note: Note: value has to be JSON-serializable.
    */
   set(key: string, value: T): void
   /**
@@ -764,49 +726,49 @@ interface SyncedMap<T> {
   entries(): [string, T][]
 }
 /**
- * @pageId component-AutoLayout
+ * @see https://developers.figma.com/docs/widgets/api/component-AutoLayout
  */
-declare type AutoLayout = FunctionalWidget<AutoLayoutProps>
+type AutoLayout = FunctionalWidget<AutoLayoutProps>
 /**
- * @pageId component-Frame
+ * @see https://developers.figma.com/docs/widgets/api/component-Frame
  */
-declare type Frame = FunctionalWidget<FrameProps>
+type Frame = FunctionalWidget<FrameProps>
 /**
- * @pageId component-Rectangle
+ * @see https://developers.figma.com/docs/widgets/api/component-Rectangle
  */
-declare type Rectangle = FunctionalWidget<RectangleProps>
+type Rectangle = FunctionalWidget<RectangleProps>
 /**
- * @pageId component-Image
+ * @see https://developers.figma.com/docs/widgets/api/component-Image
  */
-declare type ImageComponent = FunctionalWidget<ImageProps>
+type ImageComponent = FunctionalWidget<ImageProps>
 /**
- * @pageId component-Ellipse
+ * @see https://developers.figma.com/docs/widgets/api/component-Ellipse
  */
-declare type Ellipse = FunctionalWidget<EllipseProps>
+type Ellipse = FunctionalWidget<EllipseProps>
 /**
- * @pageId component-Line
+ * @see https://developers.figma.com/docs/widgets/api/component-Line
  */
-declare type Line = FunctionalWidget<LineProps>
+type Line = FunctionalWidget<LineProps>
 /**
- * @pageId component-Text
+ * @see https://developers.figma.com/docs/widgets/api/component-Text
  */
-declare type TextComponent = FunctionalWidget<TextProps>
+type TextComponent = FunctionalWidget<TextProps>
 /**
- * @pageId component-Input
+ * @see https://developers.figma.com/docs/widgets/api/component-Input
  */
-declare type Input = FunctionalWidget<InputProps>
+type Input = FunctionalWidget<InputProps>
 /**
- * @pageId component-SVG
+ * @see https://developers.figma.com/docs/widgets/api/component-SVG
  */
-declare type SVG = FunctionalWidget<SVGProps>
+type SVG = FunctionalWidget<SVGProps>
 /**
- * @pageId component-Fragment
+ * @see https://developers.figma.com/docs/widgets/api/component-Fragment
  */
-declare type Fragment = FunctionalWidget<FragmentProps>
+type Fragment = FunctionalWidget<FragmentProps>
 /**
- * @pageId component-Span
+ * @see https://developers.figma.com/docs/widgets/api/component-Span
  */
-declare type Span = (props: WidgetJSX.SpanProps) => FigmaVirtualNode<'span'>
+type Span = (props: WidgetJSX.SpanProps) => FigmaVirtualNode<'span'>
 declare type FigmaVirtualNode<T> = {
   __type: T
 }
@@ -818,14 +780,12 @@ declare type FigmaDeclarativeChildren<T> =
   | undefined
   | false
 declare type FigmaDeclarativeNode = FigmaDeclarativeChildren<any>
+
+type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
 /**
- * @pageId N/A
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
-declare type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
-/**
- * @pageId type-PropertyMenu
- */
-declare type PropertyMenuItemType =
+type PropertyMenuItemType =
   | 'action'
   | 'separator'
   | 'color-selector'
@@ -838,7 +798,7 @@ interface PropertyMenuItem {
   itemType: PropertyMenuItemType
 }
 /**
- * @pageId type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuActionItem extends PropertyMenuItem {
   /**
@@ -858,16 +818,12 @@ interface WidgetPropertyMenuActionItem extends PropertyMenuItem {
   /**
    * If specified, it will be used to render the button; otherwise, we'll fallback to the tooltip as the button label.
    *
-   * :::info
-   *
-   * The provided svg should contain the following attribute to be valid: xmlns="http://www.w3.org/2000/svg"
-   *
-   * :::
+   * Note: The provided svg should contain the following attribute to be valid: xmlns="http://www.w3.org/2000/svg"
    */
   icon?: string
 }
 /**
- * @pageId type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuSeparatorItem {
   /**
@@ -875,9 +831,7 @@ interface WidgetPropertyMenuSeparatorItem {
    */
   itemType: 'separator'
 }
-/**
- * @pageId N/A
- */
+
 interface WidgetPropertyMenuColorSelectorOption {
   /**
    * The tooltip of the selector option.
@@ -890,7 +844,7 @@ interface WidgetPropertyMenuColorSelectorOption {
   option: HexCode
 }
 /**
- * @pageId type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuColorItem extends PropertyMenuItem {
   /**
@@ -914,9 +868,7 @@ interface WidgetPropertyMenuColorItem extends PropertyMenuItem {
    */
   selectedOption: string
 }
-/**
- * @pageId N/A
- */
+
 interface WidgetPropertyMenuDropdownOption {
   /**
    * Value of the dropdown option. If selected, will correspond to `propertyValue` pass to the property menu callback.
@@ -928,7 +880,7 @@ interface WidgetPropertyMenuDropdownOption {
   label: string
 }
 /**
- * @pageId type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuDropdownItem extends PropertyMenuItem {
   /**
@@ -974,16 +926,12 @@ interface WidgetPropertyMenuToggleItem extends PropertyMenuItem {
   /**
    * If specified, it will be used to render the button; otherwise, we'll fallback to the tooltip as the button label.
    *
-   * :::info
-   *
-   * The provided svg should contain the following attribute to be valid: xmlns="http://www.w3.org/2000/svg"
-   *
-   * :::
+   * Note: The provided svg should contain the following attribute to be valid: xmlns="http://www.w3.org/2000/svg"
    */
   icon?: string
 }
 /**
- * @pageId type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
   /**
@@ -1010,18 +958,14 @@ interface WidgetPropertyMenuLinkItem extends PropertyMenuItem {
    *
    * In order to render the tooltip as the button's text, pass `null` as the value of `icon`.
    *
-   * :::info
-   *
-   * The provided svg should contain the following attribute to be valid: xmlns="http://www.w3.org/2000/svg"
-   *
-   * :::
+   * Note: The provided svg should contain the following attribute to be valid: xmlns="http://www.w3.org/2000/svg"
    */
   icon?: string | null
 }
 /**
- * @pageId type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
-declare type WidgetPropertyMenuItem =
+type WidgetPropertyMenuItem =
   | WidgetPropertyMenuActionItem
   | WidgetPropertyMenuSeparatorItem
   | WidgetPropertyMenuColorItem
@@ -1029,11 +973,11 @@ declare type WidgetPropertyMenuItem =
   | WidgetPropertyMenuToggleItem
   | WidgetPropertyMenuLinkItem
 /**
- * @pageId type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
-declare type WidgetPropertyMenu = WidgetPropertyMenuItem[]
+type WidgetPropertyMenu = WidgetPropertyMenuItem[]
 /**
- * @pageId type-PropertyMenu
+ * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 interface WidgetPropertyEvent {
   /**
@@ -1059,7 +1003,7 @@ interface TextProps extends BaseProps, WidgetJSX.WidgetJSXTextProps, TextChildre
   }
 }
 /**
- * @pageId type-TextEditEvent
+ * @see https://developers.figma.com/docs/widgets/api/type-TextEditEvent
  */
 interface TextEditEvent {
   /**
@@ -1068,7 +1012,7 @@ interface TextEditEvent {
   characters: string
 }
 /**
- * @pageId type-PlaceholderProps
+ * @see https://developers.figma.com/docs/widgets/api/type-PlaceholderProps
  */
 interface PlaceholderProps extends WidgetJSX.BlendProps, Omit<WidgetJSX.TextStyleProps, 'href'> {}
 interface InputProps extends Omit<TextProps, 'children' | 'width'> {
@@ -1119,7 +1063,7 @@ interface FragmentProps extends HasChildrenProps {
 }
 interface FrameProps extends BaseProps, WidgetJSX.WidgetJSXFrameProps, HasChildrenProps {}
 /**
- * @pageId component-AutoLayout
+ * @see https://developers.figma.com/docs/widgets/api/component-AutoLayout
  **/
 interface AutoLayoutProps extends BaseProps, WidgetJSX.WidgetJSXAutoLayoutProps, HasChildrenProps {}
 interface EllipseProps extends BaseProps, WidgetJSX.WidgetJSXEllipseProps {}
@@ -1137,19 +1081,19 @@ interface LineProps extends BaseProps, WidgetJSX.WidgetJSXLineProps {
 }
 interface SVGProps extends BaseProps, Partial<WidgetJSX.WidgetJSXFrameProps> {
   /**
-   * An svg string of the form "<svg .... />"
+   * A svg string of the form `<svg .... />`
    */
   src: string
 }
 /**
- * @pageId components
+ * @see https://developers.figma.com/docs/widgets/api/components
  */
 interface BaseProps extends WidgetJSX.WidgetJSXBaseProps {
   /**
    * Attach a click handler on the given node. If the given function is async or returns a promise, the widget is only terminated when the async function has completed and the promise has been resolved.
-   * The click handler is also passed a [`WidgetClickEvent`](/api/type-WidgetClickEvent) object that contains additional information about the click.
+   * The click handler is also passed a [`WidgetClickEvent`](https://developers.figma.com/docs/widgets/api/type-WidgetClickEvent) object that contains additional information about the click.
    *
-   * See also: [Handling User Events](/handling-user-events).
+   * See also: [Handling User Events](https://developers.figma.com/docs/widgets/handling-user-events).
    */
   onClick?: (event: WidgetClickEvent) => Promise<any> | void
   /**
@@ -1180,20 +1124,16 @@ interface HasChildrenProps {
    */
   children?: FigmaDeclarativeNode | FigmaDeclarativeNode[]
 }
-/**
- * @pageId N/A
- */
-declare type HexCode = string
-/**
- * @pageId N/A
- */
+
+type HexCode = string
+
 declare namespace WidgetJSX {
   interface Vector {
     x: number
     y: number
   }
   /**
-   * @pageId type-Color
+   * @see https://developers.figma.com/docs/widgets/api/type-Color
    */
   interface Color {
     r: number
@@ -1202,7 +1142,7 @@ declare namespace WidgetJSX {
     a: number
   }
   /**
-   * @pageId type-ArcData
+   * @see https://developers.figma.com/docs/widgets/api/type-ArcData
    */
   type ArcData = {
     readonly startingAngle: number
@@ -1210,11 +1150,11 @@ declare namespace WidgetJSX {
     readonly innerRadius: number
   }
   /**
-   * @pageId type-AlignItems
+   * @see https://developers.figma.com/docs/widgets/api/type-AlignItems
    */
   type AlignItems = 'center' | 'start' | 'end' | 'baseline'
   /**
-   * @pageId type-BlendMode
+   * @see https://developers.figma.com/docs/widgets/api/type-BlendMode
    */
   type BlendMode =
     | 'pass-through'
@@ -1235,7 +1175,7 @@ declare namespace WidgetJSX {
     | 'color'
     | 'luminosity'
   /**
-   * @pageId type-Paint
+   * @see https://developers.figma.com/docs/widgets/api/type-Paint
    */
   type PaintType =
     | 'image'
@@ -1245,7 +1185,7 @@ declare namespace WidgetJSX {
     | 'gradient-angular'
     | 'gradient-diamond'
   /**
-   * @pageId type-PaintType
+   * @see https://developers.figma.com/docs/widgets/api/type-PaintType
    */
   interface PaintProps {
     /**
@@ -1266,7 +1206,7 @@ declare namespace WidgetJSX {
     opacity?: number
   }
   /**
-   * @pageId type-SolidPaint
+   * @see https://developers.figma.com/docs/widgets/api/type-SolidPaint
    */
   interface SolidPaint extends PaintProps {
     /**
@@ -1278,15 +1218,13 @@ declare namespace WidgetJSX {
      */
     color: Color | HexCode
   }
-  /**
-   * @pageId N/A
-   */
+
   interface ColorStop {
     position: number
     color: Color
   }
   /**
-   * @pageId type-GradientPaint
+   * @see https://developers.figma.com/docs/widgets/api/type-GradientPaint
    */
   interface GradientPaint extends PaintProps {
     /**
@@ -1308,11 +1246,11 @@ declare namespace WidgetJSX {
     gradientStops: ColorStop[]
   }
   /**
-   * @pageId type-Transform
+   * @see https://developers.figma.com/docs/widgets/api/type-Transform
    */
   type Transform = [[number, number, number], [number, number, number]]
   /**
-   * @pageId type-ImagePaint
+   * @see https://developers.figma.com/docs/widgets/api/type-ImagePaint
    */
   interface ImagePaint extends PaintProps {
     /**
@@ -1349,12 +1287,12 @@ declare namespace WidgetJSX {
     imageRef?: string
   }
   /**
-   * @pageId type-Paint
+   * @see https://developers.figma.com/docs/widgets/api/type-Paint
    */
   type Paint = SolidPaint | GradientPaint | ImagePaint
   type ShadowEffect = DropShadowEffect | InnerShadowEffect
   /**
-   * @pageId type-Effect
+   * @see https://developers.figma.com/docs/widgets/api/type-Effect
    */
   interface DropShadowEffect {
     /**
@@ -1421,7 +1359,7 @@ declare namespace WidgetJSX {
     visible?: boolean
   }
   /**
-   * @pageId type-Effect
+   * @see https://developers.figma.com/docs/widgets/api/type-Effect
    */
   interface BlurEffect {
     /**
@@ -1438,32 +1376,28 @@ declare namespace WidgetJSX {
     visible?: boolean
   }
   /**
-   * @pageId type-Effect
+   * @see https://developers.figma.com/docs/widgets/api/type-Effect
    */
   type Effect = DropShadowEffect | InnerShadowEffect | BlurEffect
   /**
-   * @pageId type-Size
+   * @see https://developers.figma.com/docs/widgets/api/type-Size
    */
   type Size = number | 'fill-parent'
   /**
-   * @pageId type-Size
+   * @see https://developers.figma.com/docs/widgets/api/type-Size
    */
   type AutolayoutSize = Size | 'hug-contents'
   /**
-   * @pageId type-StrokeAlign
+   * @see https://developers.figma.com/docs/widgets/api/type-StrokeAlign
    */
   type StrokeAlign = 'inside' | 'outside' | 'center'
   /**
-   * @pageId type-StrokeCap
+   * @see https://developers.figma.com/docs/widgets/api/type-StrokeCap
    */
   type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
-  /**
-   * @pageId N/A
-   */
+
   type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
-  /**
-   * @pageId N/A
-   */
+
   type Overflow = 'visible' | 'hidden' | 'scroll'
   interface TopConstraint {
     type: 'top'
@@ -1506,7 +1440,7 @@ declare namespace WidgetJSX {
     bottomOffsetPercent: number
   }
   /**
-   * @pageId type-Constraint
+   * @see https://developers.figma.com/docs/widgets/api/type-Constraint
    */
   type VerticalConstraint =
     | TopConstraint
@@ -1515,7 +1449,7 @@ declare namespace WidgetJSX {
     | CenterConstraint
     | VerticalScaleConstraint
   /**
-   * @pageId type-Constraint
+   * @see https://developers.figma.com/docs/widgets/api/type-Constraint
    */
   type HorizontalConstraint =
     | LeftConstraint
@@ -1524,7 +1458,7 @@ declare namespace WidgetJSX {
     | CenterConstraint
     | HorizontalScaleConstraint
   /**
-   * @pageId type-CornerRadius
+   * @see https://developers.figma.com/docs/widgets/api/type-CornerRadius
    */
   type CornerRadius =
     | number
@@ -1535,7 +1469,7 @@ declare namespace WidgetJSX {
         bottomRight?: number
       }
   /**
-   * @pageId type-Path
+   * @see https://developers.figma.com/docs/widgets/api/type-Path
    */
   type Path = {
     path: string
@@ -1552,15 +1486,15 @@ declare namespace WidgetJSX {
     horizontal?: number
   }
   /**
-   * @pageId type-Padding
+   * @see https://developers.figma.com/docs/widgets/api/type-Padding
    */
   type Padding = number | FullPadding | VerticalHorizontalPadding
   /**
-   * @pageId type-FontWeight
+   * @see https://developers.figma.com/docs/widgets/api/type-FontWeight
    */
   type FontWeightNumerical = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
   /**
-   * @pageId type-FontWeight
+   * @see https://developers.figma.com/docs/widgets/api/type-FontWeight
    */
   type FontWeightString =
     | 'thin'
@@ -1573,20 +1507,17 @@ declare namespace WidgetJSX {
     | 'extra-bold'
     | 'black'
   /**
-   * @pageId type-FontWeight
+   * @see https://developers.figma.com/docs/widgets/api/type-FontWeight
    */
   type FontWeight = FontWeightNumerical | FontWeightString
   /**
-   * @pageId type-HoverStyle
+   * @see https://developers.figma.com/docs/widgets/api/type-HoverStyle
    */
   interface HoverStyle {
     fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
     stroke?: HexCode | Color | SolidPaint | GradientPaint | (SolidPaint | GradientPaint)[]
     opacity?: number
   }
-  /**
-   * @pageId interface-BaseProps
-   */
   interface WidgetJSXBaseProps extends BlendProps, ConstraintProps {
     /**
      * The name of the component. This is useful to specify a data-layer attribute to make things more debuggable when you inspect the sublayers of your widget.
@@ -1615,11 +1546,7 @@ declare namespace WidgetJSX {
      *
      * Center-aligned stroke means the center of the stroke falls exactly on the geometry. Inside-aligned stroke shifts the stroke so it lies completely inside the shape, and outside-aligned stroke is vice versa.
      *
-     * :::info
-     *
-     * Inside and outside stroke are actually implemented by doubling the stroke weight and masking the stroke by the fill. This means inside-aligned stroke will never draw strokes outside the fill and outside-aligned stroke will never draw strokes inside the fill.
-     *
-     * :::
+     * Note: Inside and outside stroke are actually implemented by doubling the stroke weight and masking the stroke by the fill. This means inside-aligned stroke will never draw strokes outside the fill and outside-aligned stroke will never draw strokes inside the fill.
      */
     strokeAlign?: StrokeAlign
     /**
@@ -1685,17 +1612,10 @@ declare namespace WidgetJSX {
      *
      * This value must be non-negative and can be fractional. If an edge length is less than twice the corner radius, the corner radius for each vertex of the edge will be clamped to half the edge length.
      *
-     * :::info
-     *
-     * Rectangle nodes can also have different corner radii on each of the four corners.
-     *
-     * :::
+     * Note: Rectangle nodes can also have different corner radii on each of the four corners.
      */
     cornerRadius?: CornerRadius
   }
-  /**
-   * @pageId interface-BlendProps
-   */
   interface BlendProps {
     /**
      * The blendMode of the component.
@@ -1733,7 +1653,7 @@ declare namespace WidgetJSX {
     y?: number | VerticalConstraint
   }
   /**
-   * @pageId type-LayoutGap
+   * @see https://developers.figma.com/docs/widgets/api/type-LayoutGap
    */
   interface LayoutGap {
     /**
