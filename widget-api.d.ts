@@ -1218,7 +1218,7 @@ declare namespace WidgetJSX {
      */
     color: Color | HexCode
   }
-  
+
   interface ColorStop {
     position: number
     color: Color
@@ -1395,9 +1395,9 @@ declare namespace WidgetJSX {
    * @see https://developers.figma.com/docs/widgets/api/type-StrokeCap
    */
   type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
-  
+
   type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
-  
+
   type Overflow = 'visible' | 'hidden' | 'scroll'
   interface TopConstraint {
     type: 'top'

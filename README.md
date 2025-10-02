@@ -7,7 +7,7 @@ This repository contains the typings for the Figma Widget API.
 ## Usage
 
 1. Installation
-   
+
    Note that the widget api is an extention of the plugin api so you should install both `@figma/plugin-typings` and `@figma/widget-typings`
 
    ```sh
