@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-set -xueo pipefail
+set -euo pipefail
+
+ROOT=$(pwd)
+PACKAGE_TARBALL=$(realpath "${1:?Pass the packed package to test}")
+TSC="$ROOT/node_modules/.bin/tsc"
 
 rm -rf test-artifacts
 mkdir -p test-artifacts
@@ -178,10 +182,10 @@ widget.register(Widget)
 EOF
 
 
-npm install typescript
-npm install @figma/plugin-typings
-npm install ../../
-npx tsc --noEmit
+mkdir -p node_modules/@figma/widget-typings
+tar -xzf "$PACKAGE_TARBALL" --strip-components=1 -C node_modules/@figma/widget-typings
+ln -s "$ROOT/node_modules/@figma/plugin-typings" node_modules/@figma/plugin-typings
+"$TSC" --noEmit
 
 popd
 
@@ -231,9 +235,9 @@ type FigmaDeclarativeNodeAlias = FigmaDeclarativeNode
 type VectorAlias = WidgetJSX.Vector
 EOF
 
-npm install typescript
-npm install @figma/plugin-typings
-npm install ../../
-npx tsc --noEmit
+mkdir -p node_modules/@figma/widget-typings
+tar -xzf "$PACKAGE_TARBALL" --strip-components=1 -C node_modules/@figma/widget-typings
+ln -s "$ROOT/node_modules/@figma/plugin-typings" node_modules/@figma/plugin-typings
+"$TSC" --noEmit
 
 popd

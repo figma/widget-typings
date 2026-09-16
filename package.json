@@ -8,7 +8,8 @@
     "prettier": "npm run prettier-path -- '**/*.{ts,js}'",
     "prettier:check": "npm run prettier-path:check -- '**/*.{ts,js}'",
     "prettier-path": "prettier --write",
-    "prettier-path:check": "prettier --check"
+    "prettier-path:check": "prettier --check",
+    "release:check": "node --test scripts/release.test.mjs && node scripts/release.mjs pack && bash test-usage.sh .release/package.tgz && npm run prettier:check"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,12 @@
     "@figma/plugin-typings": "1.x"
   },
   "devDependencies": {
-    "prettier": "^2.6.2"
-  }
+    "prettier": "^2.6.2",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "index.d.ts",
+    "widget-api.d.ts",
+    "widget-api-standalone.d.ts"
+  ]
 }
