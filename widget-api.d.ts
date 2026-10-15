@@ -773,12 +773,7 @@ declare type FigmaVirtualNode<T> = {
   __type: T
 }
 declare type FigmaDeclarativeChildren<T> =
-  | FigmaVirtualNode<T>
-  | FigmaDeclarativeChildren<T>[]
-  | string
-  | null
-  | undefined
-  | false
+  FigmaVirtualNode<T> | FigmaDeclarativeChildren<T>[] | string | null | undefined | false
 declare type FigmaDeclarativeNode = FigmaDeclarativeChildren<any>
 
 type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
@@ -786,12 +781,7 @@ type FunctionalWidget<T> = (props: T) => FigmaDeclarativeNode
  * @see https://developers.figma.com/docs/widgets/api/type-PropertyMenu
  */
 type PropertyMenuItemType =
-  | 'action'
-  | 'separator'
-  | 'color-selector'
-  | 'dropdown'
-  | 'toggle'
-  | 'link'
+  'action' | 'separator' | 'color-selector' | 'dropdown' | 'toggle' | 'link'
 interface PropertyMenuItem {
   tooltip: string
   propertyName: string
@@ -991,10 +981,7 @@ interface WidgetPropertyEvent {
 }
 interface TextChildren {
   children?:
-    | FigmaVirtualNode<'span'>
-    | string
-    | number
-    | (FigmaVirtualNode<'span'> | string | number)[]
+    FigmaVirtualNode<'span'> | string | number | (FigmaVirtualNode<'span'> | string | number)[]
 }
 interface TextProps extends BaseProps, WidgetJSX.WidgetJSXTextProps, TextChildren {
   font?: {
@@ -1218,7 +1205,7 @@ declare namespace WidgetJSX {
      */
     color: Color | HexCode
   }
-
+  
   interface ColorStop {
     position: number
     color: Color
@@ -1395,9 +1382,9 @@ declare namespace WidgetJSX {
    * @see https://developers.figma.com/docs/widgets/api/type-StrokeCap
    */
   type StrokeCap = 'none' | 'round' | 'square' | 'arrow-lines' | 'arrow-equilateral'
-
+  
   type ScaleMode = 'fill' | 'fit' | 'tile' | 'crop'
-
+  
   type Overflow = 'visible' | 'hidden' | 'scroll'
   interface TopConstraint {
     type: 'top'
@@ -1741,11 +1728,7 @@ declare namespace WidgetJSX {
     fill?: HexCode | Color | Paint | (SolidPaint | GradientPaint)[]
   }
   interface WidgetJSXFrameProps
-    extends BaseProps,
-      GeometryProps,
-      SizePropsRequired,
-      TransformProps,
-      CornerProps {
+    extends BaseProps, GeometryProps, SizePropsRequired, TransformProps, CornerProps {
     /**
      * The overflow of the component - 'visible' | 'hidden' | 'scroll'
      *
@@ -1755,9 +1738,7 @@ declare namespace WidgetJSX {
     overflow?: Overflow
   }
   interface WidgetJSXAutoLayoutProps
-    extends Omit<FrameProps, 'width' | 'height'>,
-      LayoutProps,
-      AutoLayoutSizeProps {}
+    extends Omit<FrameProps, 'width' | 'height'>, LayoutProps, AutoLayoutSizeProps {}
   interface WidgetJSXEllipseProps extends BaseProps, GeometryProps, TransformProps, SizeProps {
     /**
      * The "arc" properties of the Ellipse.
@@ -1771,27 +1752,21 @@ declare namespace WidgetJSX {
     src: string | ImagePaint
   }
   interface WidgetJSXLineProps
-    extends BaseProps,
+    extends
+      BaseProps,
       TransformProps,
       Pick<GeometryProps, 'stroke' | 'strokeWidth' | 'strokeDashPattern'> {}
   interface WidgetJSXRectangleProps
-    extends BaseProps,
-      GeometryProps,
-      SizePropsRequired,
-      TransformProps,
-      CornerProps {}
+    extends BaseProps, GeometryProps, SizePropsRequired, TransformProps, CornerProps {}
   interface WidgetJSXSVGProps
-    extends BaseProps,
-      GeometryProps,
-      SizeProps,
-      TransformProps,
-      PathProps {}
+    extends BaseProps, GeometryProps, SizeProps, TransformProps, PathProps {}
   interface ParagraphProps {
     spacing: number
   }
   interface SpanProps extends TextStyleProps, TextChildren {}
   interface WidgetJSXTextProps
-    extends BaseProps,
+    extends
+      BaseProps,
       AutoLayoutSizeProps,
       TransformProps,
       Omit<GeometryProps, 'fill'>,
